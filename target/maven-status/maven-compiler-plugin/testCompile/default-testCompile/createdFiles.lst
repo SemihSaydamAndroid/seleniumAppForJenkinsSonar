@@ -1,0 +1,6 @@
+com\trendyol\base\BasePage.class
+com\trendyol\base\BaseTest.class
+com\trendyol\constants\constants.class
+com\trendyol\test\Scenario1PAGETest.class
+com\trendyol\constants\constantsLoginPage.class
+com\trendyol\page\Scenario_1_PAGE.class
