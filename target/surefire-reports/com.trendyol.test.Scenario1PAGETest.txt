@@ -1,4 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: com.trendyol.test.Scenario1PAGETest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 33.492 s - in com.trendyol.test.Scenario1PAGETest
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 3.289 s <<< FAILURE! - in com.trendyol.test.Scenario1PAGETest
+testLogin(com.trendyol.test.Scenario1PAGETest)  Time elapsed: 2.993 s  <<< ERROR!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-BI61RPR', ip: '172.31.128.1', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.UnknownHostException: Bilinen böyle bir ana bilgisayar yok (selenium-hub)
+
+testLogin(com.trendyol.test.Scenario1PAGETest)  Time elapsed: 2.993 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.quit()" because "com.trendyol.base.BaseTest.webDriver" is null
+	at com.trendyol.test.Scenario1PAGETest.after(Scenario1PAGETest.java:51)
+
