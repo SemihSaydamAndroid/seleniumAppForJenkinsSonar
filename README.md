@@ -2,7 +2,7 @@
 
 '''bash
 docker-compose -f seleniumgridyoutube.yml -up -d
-'''
+
 
 localhost:4445 --> selenium-grid
 
