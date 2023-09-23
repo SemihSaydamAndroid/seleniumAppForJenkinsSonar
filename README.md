@@ -1,3 +1,11 @@
+# Kullanım
+
+'''bash
+docker-compose -f seleniumgridyoutube.yml -up -d
+'''
+
+localhost:4445 --> selenium-grid
+
 # Selenium Grid Video Yapılandırması
 
 Bu YAML dosyası, Chrome, Firefox ve Edge tarayıcılarıyla bir Selenium Grid kurmak için bir Docker Compose yapılandırma dosyasıdır. Yapılandırma, Selenium Hub servisi ve her tarayıcı için üç düğüm hizmeti içerir. Her düğüm hizmeti, Selenium etkinlik veri yolu ana bilgisayar, yayın bağlantı noktası, abone bağlantı noktası ve maksimum oturumlar için çevre değişkenleriyle yapılandırılmıştır. Chrome, Firefox ve Edge düğüm hizmetleri, paylaşılan bellek boyutu ve VNC ve hata ayıklama için açık bağlantı noktaları ile yapılandırılmıştır. Ayrıca, her tarayıcıda çalıştırılan testleri kaydetmek için üç video hizmeti vardır. Video hizmetleri, görüntüleme konteyner adı ve dosya adı için çevre değişkenleriyle yapılandırılmıştır.
