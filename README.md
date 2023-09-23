@@ -1,8 +1,8 @@
 # Kullanım
 
-'''sh
-docker-compose -f seleniumgridyoutube.yml -up -d
-
+```console
+hello@world:~$ docker-compose -f seleniumgridyoutube.yml -up -d
+```
 
 localhost:4445 --> selenium-grid
 
