@@ -1,5 +1,4 @@
-# https://www.youtube.com/watch?v=NjQ5zZM7fpI
-# https://www.youtube.com/watch?v=r1gdJ-QICmY
+
 
 version: "3"
 services:
@@ -125,16 +124,8 @@ services:
       - DISPLAY_CONTAINER_NAME=FirefoxService
       - FILE_NAME=firefox_video.mp4
 
-  # VideoService:
-  #   image: elgalu/selenium:latest
-  #   container_name: seleniumVideo
-  #   ports:
-  #     - "5555:5555"
-  #   volumes:
-  #     - ./videos:/videos
-  #   command: >
-  #     sh -c "mkdir -p /videos
-  #            chmod -R 777 /videos
-  #            /opt/bin/entry_point.sh"
-
 # VideoService service'inin içine bağlanmak için exec komutu : docker exec -it seleniumVideo bash
+# https://www.youtube.com/watch?v=NjQ5zZM7fpI
+# https://www.youtube.com/watch?v=r1gdJ-QICmY
+
+#secret is password
