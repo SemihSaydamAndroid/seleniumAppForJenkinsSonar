@@ -1,6 +1,6 @@
 # Kullanım
 
-'''bash
+'''sh
 docker-compose -f seleniumgridyoutube.yml -up -d
 
 
