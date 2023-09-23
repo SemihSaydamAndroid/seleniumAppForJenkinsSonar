@@ -1,4 +1,5 @@
 # https://www.youtube.com/watch?v=NjQ5zZM7fpI
+# https://www.youtube.com/watch?v=r1gdJ-QICmY
 
 version: "3"
 services:
@@ -20,23 +21,23 @@ services:
       - SE_EVENT_BUS_HOST=seleniumHub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-      - SE_NODE_MAX_SESSIONS=3
+      - SE_NODE_MAX_SESSIONS=4
     depends_on:
       - HubService   
-    volumes:
-      - /dev/shm:/dev/shm
-      - ./videos:/videos
-    command: >
-      sh -c "SE_NODE_MAX_SESSIONS=3
-             SE_NODE_VIDEO=true
-             SE_NODE_VIDEO_OUTPUT_DIR=/videos
-             SE_NODE_VIDEO_OUTPUT_FILE=${SE_NODE_SESSION_NAME}.mp4
-             SE_NODE_VIDEO_CODEC=vp9
-             SE_NODE_VIDEO_FRAMERATE=24
-             SE_NODE_VIDEO_RESOLUTION=1920x1080
-             SE_NODE_VIDEO_CLEANUP_ON_EXIT=true
-             SE_NODE_PROXY_PARAMS='--proxy-server=proxy:8080'
-             /opt/bin/entry_point.sh"
+    # volumes:
+    #   - /dev/shm:/dev/shm
+    #   - ./videos:/videos
+    # command: >
+    #   sh -c "SE_NODE_MAX_SESSIONS=3
+    #          SE_NODE_VIDEO=true
+    #          SE_NODE_VIDEO_OUTPUT_DIR=/videos
+    #          SE_NODE_VIDEO_OUTPUT_FILE=${SE_NODE_SESSION_NAME}.mp4
+    #          SE_NODE_VIDEO_CODEC=vp9
+    #          SE_NODE_VIDEO_FRAMERATE=24
+    #          SE_NODE_VIDEO_RESOLUTION=1920x1080
+    #          SE_NODE_VIDEO_CLEANUP_ON_EXIT=true
+    #          SE_NODE_PROXY_PARAMS='--proxy-server=proxy:8080'
+    #          /opt/bin/entry_point.sh"
  
   FirefoxService:
     image: selenium/node-firefox:4.0.0-rc-2-20210930
@@ -51,20 +52,20 @@ services:
       - SE_NODE_MAX_SESSIONS=2
     depends_on:
       - HubService  
-    volumes:
-      - /dev/shm:/dev/shm
-      - ./videos:/videos
-    command: >
-      sh -c "SE_NODE_MAX_SESSIONS=2
-             SE_NODE_VIDEO=true
-             SE_NODE_VIDEO_OUTPUT_DIR=/videos
-             SE_NODE_VIDEO_OUTPUT_FILE=${SE_NODE_SESSION_NAME}.mp4
-             SE_NODE_VIDEO_CODEC=vp9
-             SE_NODE_VIDEO_FRAMERATE=24
-             SE_NODE_VIDEO_RESOLUTION=1920x1080
-             SE_NODE_VIDEO_CLEANUP_ON_EXIT=true
-             SE_NODE_PROXY_PARAMS='--proxy-server=proxy:8080'
-             /opt/bin/entry_point.sh"
+    # volumes:
+    #   - /dev/shm:/dev/shm
+    #   - ./videos:/videos
+    # command: >
+    #   sh -c "SE_NODE_MAX_SESSIONS=2
+    #          SE_NODE_VIDEO=true
+    #          SE_NODE_VIDEO_OUTPUT_DIR=/videos
+    #          SE_NODE_VIDEO_OUTPUT_FILE=${SE_NODE_SESSION_NAME}.mp4
+    #          SE_NODE_VIDEO_CODEC=vp9
+    #          SE_NODE_VIDEO_FRAMERATE=24
+    #          SE_NODE_VIDEO_RESOLUTION=1920x1080
+    #          SE_NODE_VIDEO_CLEANUP_ON_EXIT=true
+    #          SE_NODE_PROXY_PARAMS='--proxy-server=proxy:8080'
+    #          /opt/bin/entry_point.sh"
 
   EdgeService:
     image: selenium/node-edge:4.0.0-rc-2-20210930
@@ -79,20 +80,61 @@ services:
       - SE_NODE_MAX_SESSIONS=2
     depends_on:
       - HubService
-    volumes:
-      - /dev/shm:/dev/shm
-      - ./videos:/videos
-    command: >
-      sh -c "SE_NODE_MAX_SESSIONS=2
-             SE_NODE_VIDEO=true
-             SE_NODE_VIDEO_OUTPUT_DIR=/videos
-             SE_NODE_VIDEO_OUTPUT_FILE=${SE_NODE_SESSION_NAME}.mp4
-             SE_NODE_VIDEO_CODEC=vp9
-             SE_NODE_VIDEO_FRAMERATE=24
-             SE_NODE_VIDEO_RESOLUTION=1920x1080
-             SE_NODE_VIDEO_CLEANUP_ON_EXIT=true
-             SE_NODE_PROXY_PARAMS='--proxy-server=proxy:8080'
-             /opt/bin/entry_point.sh"
+    # volumes:
+    #   - /dev/shm:/dev/shm
+    #   - ./videos:/videos
+    # command: >
+    #   sh -c "SE_NODE_MAX_SESSIONS=2
+    #          SE_NODE_VIDEO=true
+    #          SE_NODE_VIDEO_OUTPUT_DIR=/videos
+    #          SE_NODE_VIDEO_OUTPUT_FILE=${SE_NODE_SESSION_NAME}.mp4
+    #          SE_NODE_VIDEO_CODEC=vp9
+    #          SE_NODE_VIDEO_FRAMERATE=24
+    #          SE_NODE_VIDEO_RESOLUTION=1920x1080
+    #          SE_NODE_VIDEO_CLEANUP_ON_EXIT=true
+    #          SE_NODE_PROXY_PARAMS='--proxy-server=proxy:8080'
+    #          /opt/bin/entry_point.sh"
 
-# bu docker-compose dosyasını -f parametresi ile çalıştırıyoruz.
-# docker-compose -f seleniumgridyoutube.yml up -d
+  chrome_video:
+    image: selenium/video:ffmpeg-4.3.1-20230920
+    volumes:
+      - ./TestRecordings:/videos
+    depends_on:
+      - ChromeService
+    environment:
+      - DISPLAY_CONTAINER_NAME=ChromeService
+      - FILE_NAME=chrome_video.mp4
+
+  edge_video:
+    image: selenium/video:ffmpeg-4.3.1-20230920
+    volumes:
+      - ./TestRecordings:/videos
+    depends_on:
+      - EdgeService
+    environment:
+      - DISPLAY_CONTAINER_NAME=EdgeService
+      - FILE_NAME=edge_video.mp4
+
+  firefox_video:
+    image: selenium/video:ffmpeg-4.3.1-20230920
+    volumes:
+      - ./TestRecordings:/videos
+    depends_on:
+      - FirefoxService
+    environment:
+      - DISPLAY_CONTAINER_NAME=FirefoxService
+      - FILE_NAME=firefox_video.mp4
+
+  # VideoService:
+  #   image: elgalu/selenium:latest
+  #   container_name: seleniumVideo
+  #   ports:
+  #     - "5555:5555"
+  #   volumes:
+  #     - ./videos:/videos
+  #   command: >
+  #     sh -c "mkdir -p /videos
+  #            chmod -R 777 /videos
+  #            /opt/bin/entry_point.sh"
+
+# VideoService service'inin içine bağlanmak için exec komutu : docker exec -it seleniumVideo bash

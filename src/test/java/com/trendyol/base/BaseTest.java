@@ -32,7 +32,7 @@ public class BaseTest {
         desiredCapabilities.setBrowserName("chrome");
 
         ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
+        options.addArguments("--enable-gpu");
         options.merge(desiredCapabilities);
 
         WebDriver webDriver = new RemoteWebDriver(URI.create("http://localhost:4445/wd/hub").toURL(), options);
