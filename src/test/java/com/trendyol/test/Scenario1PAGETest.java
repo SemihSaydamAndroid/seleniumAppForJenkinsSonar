@@ -51,6 +51,7 @@ public class Scenario1PAGETest extends BaseTest {
        element.sendKeys(Keys.ENTER);
 
        Thread.sleep(1000);
+       
        log.info("30 SANİYE BİTTİ");
 
     }
