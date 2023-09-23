@@ -1,7 +1,7 @@
 # Kullanım
 
 ```console
-hello@world:~$ docker-compose -f seleniumgridyoutube.yml -up -d
+hello@world:~$ docker-compose -f seleniumgridvideo.yml -up -d
 ```
 
 localhost:4445 --> selenium-grid
