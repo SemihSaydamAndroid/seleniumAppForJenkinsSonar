@@ -4,7 +4,7 @@
 version: "3"
 services:
   HubService:
-    image: selenium/hub:4.0.0-rc-2-20210930
+    image: selenium/hub:latest
     container_name: seleniumHub
     ports:
       - "4445:4444" 
@@ -12,7 +12,7 @@ services:
       - "4443:4443"
 
   ChromeService:
-    image: selenium/node-chrome:4.0.0-rc-2-20210930
+    image: selenium/node-chrome:latest
     shm_size: "2gb"
     ports:
       - "5900"  
@@ -40,7 +40,7 @@ services:
     #          /opt/bin/entry_point.sh"
  
   FirefoxService:
-    image: selenium/node-firefox:4.0.0-rc-2-20210930
+    image: selenium/node-firefox:latest
     shm_size: "2gb"
     ports:
       - "5900"  
@@ -68,7 +68,7 @@ services:
     #          /opt/bin/entry_point.sh"
 
   EdgeService:
-    image: selenium/node-edge:4.0.0-rc-2-20210930
+    image: selenium/node-edge:latest
     shm_size: "2gb"
     ports:
       - "5900"  
