@@ -31,8 +31,8 @@ public class Scenario1PAGETest extends BaseTest {
     @Before
     public void before() {
         scenario1PAGE = new Scenario_1_PAGE(getWebDriver());
-        log.info("**************** Driver activated ***************");
-
+       log.info("**************** Driver activated ***************");
+  
     }
 
 
@@ -40,7 +40,7 @@ public class Scenario1PAGETest extends BaseTest {
     public void testLogin() throws InterruptedException {
        log.info("**************** Trendyol test Started ***************");
        log.info("30 SANİYE BEKLENİYOR");
-       Thread.sleep(10000);
+       Thread.sleep(3000);
        log.info("30 SANİYE BİTTİ");
 
     }
@@ -48,7 +48,7 @@ public class Scenario1PAGETest extends BaseTest {
 
     @After
     public void after() throws InterruptedException {
-        tearDown();
+        getWebDriver().quit();
         log.info("**************** Test Finished ****************");
     }
 }
