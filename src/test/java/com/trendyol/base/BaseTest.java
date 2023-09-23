@@ -36,6 +36,7 @@ public class BaseTest {
         options.merge(desiredCapabilities);
 
         WebDriver webDriver = new RemoteWebDriver(URI.create("http://localhost:4444/wd/hub").toURL(), options);
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         webDriver.get("https://www.trendyol.com/");
 
     }
