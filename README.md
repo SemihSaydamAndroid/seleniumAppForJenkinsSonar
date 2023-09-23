@@ -114,10 +114,10 @@ Not: Şifre "secret" olarak ayarlanmıştır.
 
 # Note
 
-The code contains Trendyol UI test.
-This test created with Page Object Model. 
+Bu kod Trendyol UI testini içerir.
+Bu test Page Object Model ile oluşturulmuştur.
 
-More information for Page object model please read my story : 
+Page Object Model hakkında daha fazla bilgi için lütfen şu yazımı okuyun:
 https://medium.com/@semihsaydam/seleniumda-page-object-pattern-yapısı-d152c916505d
 
 
