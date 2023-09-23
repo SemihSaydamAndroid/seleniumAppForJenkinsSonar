@@ -1,16 +1,4 @@
-# Note
-
-The code contains Trendyol UI test.
-This test created with Page Object Model. 
-
-More information for Page object model please read my story : 
-https://medium.com/@semihsaydam/seleniumda-page-object-pattern-yapısı-d152c916505d
-
-
-Be Happy :)
-
-
-# Selenium Grid Yapılandırması
+# Selenium Grid Video Yapılandırması
 
 Bu YAML dosyası, Chrome, Firefox ve Edge tarayıcılarıyla bir Selenium Grid kurmak için bir Docker Compose yapılandırma dosyasıdır. Yapılandırma, Selenium Hub servisi ve her tarayıcı için üç düğüm hizmeti içerir. Her düğüm hizmeti, Selenium etkinlik veri yolu ana bilgisayar, yayın bağlantı noktası, abone bağlantı noktası ve maksimum oturumlar için çevre değişkenleriyle yapılandırılmıştır. Chrome, Firefox ve Edge düğüm hizmetleri, paylaşılan bellek boyutu ve VNC ve hata ayıklama için açık bağlantı noktaları ile yapılandırılmıştır. Ayrıca, her tarayıcıda çalıştırılan testleri kaydetmek için üç video hizmeti vardır. Video hizmetleri, görüntüleme konteyner adı ve dosya adı için çevre değişkenleriyle yapılandırılmıştır.
 
@@ -123,3 +111,14 @@ Firefox tarayıcısı için video hizmeti.
 - https://www.youtube.com/watch?v=r1gdJ-QICmY
 
 Not: Şifre "secret" olarak ayarlanmıştır.
+
+# Note
+
+The code contains Trendyol UI test.
+This test created with Page Object Model. 
+
+More information for Page object model please read my story : 
+https://medium.com/@semihsaydam/seleniumda-page-object-pattern-yapısı-d152c916505d
+
+
+Be Happy :)
