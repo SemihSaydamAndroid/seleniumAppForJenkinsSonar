@@ -12,6 +12,7 @@ import  com.trendyol.constants.constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,7 +35,7 @@ public class BaseTest {
         options.setHeadless(true);
         options.merge(desiredCapabilities);
 
-        WebDriver webDriver = new RemoteWebDriver(new URL("http://selenium-hub:4444/wd/hub"), options);
+        WebDriver webDriver = new RemoteWebDriver(URI.create("http://localhost:4444/wd/hub").toURL(), options);
         webDriver.get("https://www.trendyol.com/");
 
     }
