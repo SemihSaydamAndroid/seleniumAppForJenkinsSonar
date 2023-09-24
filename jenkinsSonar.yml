@@ -105,6 +105,10 @@ volumes:
 
 #secret is password
 
+#Jenkinsfile'ı repoya koymanıza rağmen tanımıyorsa[not a git repository] : 
+#  cd /var/jenkins_home
+#  git config --global --add safe.directory '*'
+
 # Docker üzerinden kaldırdığınız jenkins ip'sine göre hub vermek gerekiyor: 
 # docker container logs seleniumHub > sth.txt
 # sth.txt -- 04:04:42.159 INFO [Hub.execute] - Started Selenium Hub 4.12.1 (revision 8e34639b11): http://172.21.0.2:4444
