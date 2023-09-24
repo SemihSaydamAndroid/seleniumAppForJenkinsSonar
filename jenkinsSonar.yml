@@ -109,6 +109,8 @@ services:
 
 volumes:
   jenkins_home:
+  plugins:
+    external: true
 
 # Selenium HUB - selenium video
       # https://www.youtube.com/watch?v=NjQ5zZM7fpI  -- //todo Scale 1+ chrome command + Vnc Viewer 
