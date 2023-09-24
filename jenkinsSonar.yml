@@ -97,7 +97,6 @@ services:
     depends_on:
       - HubService
 
-
 volumes:
   jenkins_home:
 

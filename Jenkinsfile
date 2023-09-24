@@ -8,8 +8,10 @@ pipeline {
 
     stages {
         stage('Clone repository') {
-            cleanWs()
-            git -b main 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar'
+            steps {
+                cleanWs()
+                git branch: 'main', url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git'
+            }
         }
         stage('Docker compose') {
             steps {
