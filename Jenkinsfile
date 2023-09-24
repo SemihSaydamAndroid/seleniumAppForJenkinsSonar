@@ -13,11 +13,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git'
             }
         }
-        stage('Docker compose') {
-            steps {
-                sh 'docker compose -f jenkinsSonar.yml up -d --scale chrome=5 --scale firefox=0'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
@@ -25,3 +20,8 @@ pipeline {
         }
     }
 }
+
+
+//Jenkinsfile'ı repoya koymanıza rağmen tanımıyorsa[not a git repository] : 
+//  cd /var/jenkins_home
+//  git config --global --add safe.directory '*'
