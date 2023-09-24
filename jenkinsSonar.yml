@@ -1,3 +1,4 @@
+# docker-compose -f .\jenkinsSonar.yml up -d
 version: "3"
 services:
   HubService:
@@ -96,20 +97,35 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - HubService
+    
+  sonarqube:
+    image: sonarqube:latest
+    ports:
+      - "9000:9000" 
+    volumes:
+      - ./plugins:/opt/sonarqube/extensions/plugins
+    depends_on:
+      - jenkins
 
 volumes:
   jenkins_home:
 
-# https://www.youtube.com/watch?v=NjQ5zZM7fpI  -- //todo Scale 1+ chrome command + Vnc Viewer 
-# https://www.youtube.com/watch?v=r1gdJ-QICmY
+# Selenium HUB - selenium video
+      # https://www.youtube.com/watch?v=NjQ5zZM7fpI  -- //todo Scale 1+ chrome command + Vnc Viewer 
+      # https://www.youtube.com/watch?v=r1gdJ-QICmY
 
-#secret is password
+      #secret is password for VNC video
 
-#Jenkinsfile'ı repoya koymanıza rağmen tanımıyorsa[not a git repository] : 
-#  cd /var/jenkins_home
-#  git config --global --add safe.directory '*'
+# Jenkins
+      # Jenkins açıldıktan sonra Manage Jenkins --> Tools --> JDK | Git | Maven'a default isimler verip; automatically install yap
+      # Sonarqube için SonarScanner plugin'i indirip Jenkins'e yükle
 
-# Docker üzerinden kaldırdığınız jenkins ip'sine göre hub vermek gerekiyor: 
-# docker container logs seleniumHub > sth.txt
-# sth.txt -- 04:04:42.159 INFO [Hub.execute] - Started Selenium Hub 4.12.1 (revision 8e34639b11): http://172.21.0.2:4444
-# Bu adresi testinizde vermelisiniz : WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);
+      #Jenkinsfile'ı repoya koymanıza rağmen tanımıyorsa[not a git repository] : 
+      #  cd /var/jenkins_home
+      #  git config --global --add safe.directory '*'
+
+# Jenkins - SeleniumHUB configurations
+      # Docker üzerinden kaldırdığınız jenkins ip'sine göre hub vermek gerekiyor: 
+      # docker container logs seleniumHub > sth.txt
+      # sth.txt -- 04:04:42.159 INFO [Hub.execute] - Started Selenium Hub 4.12.1 (revision 8e34639b11): http://172.21.0.2:4444
+      # Bu adresi testinizde vermelisiniz : WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);            
