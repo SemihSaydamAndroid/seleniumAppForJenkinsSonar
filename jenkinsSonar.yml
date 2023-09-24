@@ -1,0 +1,106 @@
+version: "3"
+services:
+  HubService:
+    image: selenium/hub:latest
+    container_name: seleniumHub
+    ports:
+      - "4445:4444" 
+      - "4442:4442"
+      - "4443:4443"
+
+  ChromeService:
+    image: selenium/node-chrome:latest
+    shm_size: "2gb"
+    ports:
+      - "5900"  
+      - "7900"
+    environment:
+      - SE_EVENT_BUS_HOST=seleniumHub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=4
+    depends_on:
+      - HubService   
+      - jenkins
+
+  FirefoxService:
+    image: selenium/node-firefox:latest
+    shm_size: "2gb"
+    ports:
+      - "5900"  
+      - "7900"
+    environment:
+      - SE_EVENT_BUS_HOST=seleniumHub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=2
+    depends_on:
+      - HubService   
+      - jenkins
+
+  EdgeService:
+    image: selenium/node-edge:latest
+    shm_size: "2gb"
+    ports:
+      - "5900"  
+      - "7900"
+    environment:
+      - SE_EVENT_BUS_HOST=seleniumHub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=2
+    depends_on:
+      - HubService   
+      - jenkins
+
+  chrome_video:
+    image: selenium/video:ffmpeg-4.3.1-20230920
+    volumes:
+      - ./TestRecordings:/videos
+    depends_on:
+      - ChromeService
+    environment:
+      - DISPLAY_CONTAINER_NAME=ChromeService
+      - FILE_NAME=chrome_video.mp4
+
+  edge_video:
+    image: selenium/video:ffmpeg-4.3.1-20230920
+    volumes:
+      - ./TestRecordings:/videos
+    depends_on:
+      - EdgeService
+    environment:
+      - DISPLAY_CONTAINER_NAME=EdgeService
+      - FILE_NAME=edge_video.mp4
+
+  firefox_video:
+    image: selenium/video:ffmpeg-4.3.1-20230920
+    volumes:
+      - ./TestRecordings:/videos
+    depends_on:
+      - FirefoxService
+    environment:
+      - DISPLAY_CONTAINER_NAME=FirefoxService
+      - FILE_NAME=firefox_video.mp4
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    depends_on:
+      - HubService
+    # environment:
+    # - SE_EVENT_BUS_HOST=seleniumHub
+    # - SE_EVENT_BUS_PUBLISH_PORT=4442
+    # - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+volumes:
+  jenkins_home:
+
+# https://www.youtube.com/watch?v=NjQ5zZM7fpI  -- //todo Scale 1+ chrome command + Vnc Viewer 
+# https://www.youtube.com/watch?v=r1gdJ-QICmY
+
+#secret is password
