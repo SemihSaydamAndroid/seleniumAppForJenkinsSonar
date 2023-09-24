@@ -3,6 +3,7 @@ pipeline {
 
     tools {
         maven 'mvnDefault'
+        git 'gitDefault'
     }
 
     stages {
