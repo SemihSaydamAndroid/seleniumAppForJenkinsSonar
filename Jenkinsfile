@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'mvnDefault'
+    }
+
     stages {
         stage('Build') {
             steps {
