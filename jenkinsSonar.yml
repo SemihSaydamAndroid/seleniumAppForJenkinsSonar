@@ -104,3 +104,8 @@ volumes:
 # https://www.youtube.com/watch?v=r1gdJ-QICmY
 
 #secret is password
+
+# Docker üzerinden kaldırdığınız jenkins ip'sine göre hub vermek gerekiyor: 
+# docker container logs seleniumHub > sth.txt
+# sth.txt -- 04:04:42.159 INFO [Hub.execute] - Started Selenium Hub 4.12.1 (revision 8e34639b11): http://172.21.0.2:4444
+# Bu adresi testinizde vermelisiniz : WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);

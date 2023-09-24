@@ -35,7 +35,8 @@ public class BaseTest {
         options.addArguments("--enable-gpu");
         options.merge(desiredCapabilities);
 
-        WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);
+        // WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);
+        WebDriver webDriver = new RemoteWebDriver(URI.create("http://0.0.0.0:4444/wd/hub").toURL(), options);
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         webDriver.manage().window().maximize();
         setWebDriver(webDriver);
