@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Docker compose') {
             steps {
                 sh 'docker compose -f jenkinsSonar.yml up -d --scale chrome=5 --scale firefox=0'
             }
