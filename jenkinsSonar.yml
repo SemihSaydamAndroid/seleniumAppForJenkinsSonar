@@ -134,16 +134,20 @@ volumes:
       # Yukarıdaki açıklamalar yerine aşağıdaki "önemli, ip konusu. Jenkins-selenium hub | Jenkins-sonarqube" başlığına bakılabilir.
 
 # Sonarqube
+# https://funnelgarden.com/sonarqube-jenkins-docker/
+# Buradaki gibi jenkins için bir webhook + Sonarqube'ta bir token oluşturuyoruz. Token'ı jenkins'te credentials üzerinden sonarqube server'a veriyoruz.
+# Sonarqube server'a sonar'ın ip port'u ile adresini de evriyoruz: http://172.21.0.6:9000 şeklinde ve son olarak bu konfigürasyona bir "name" verip bu name'i
+# Jenkinsfile'da withSonarqubeEnv() içine veriyoruz.
+
       # http://localhost:9000/ --> admin/admin ile ilk giriş yapılıp; şifre değiştirme ekranına gidilir.
       # http://localhost:9000/account/security/ --> Generate Tokens --> Token Name verilip Generate edilir.
       # Jenkins'e SonarScanner plugin kurulur : https://funnelgarden.com/sonarqube-jenkins-docker/
-          # webhook tanımlıyoruz. BaseTest'te jenkins ip'sini vermiştik yine onunla webook tanımlıyacağız:
+          # webhook tanımlıyoruz. BaseTest'te jenkins ip'sini vermiştik yine onunla wehbook tanımlıyacağız:
           # http://localhost:9000/admin/webhooks --> Name: Jenkins | URL: http://172.21.0.2:8080/sonarqube-webhook/ | Secret: Generate edilen token<squ_ae0d062b92d5874e86c569fe8cce58d8fba048ac>
       # Jenkins --> Manage Jenkins -->  System --> SonarQube servers --> Add SonarQube --> Name: SonarQube | Server URL: http://sonarqube:9000 | Server authentication token: Generate edilen token
       # Jenkins --> Manage Jenkins --> Global Tool Configuration --> SonarQube Scanner --> Name: SonarQubeScanner | Install automatically: işaretli | Install from Maven Central: işaretli
       # Jenkins --> Manage Jenkins --> Configure System --> SonarQube servers --> Add SonarQube --> Name: SonarQubeScanner | Server URL: http://sonarqube:9000 | Server authentication token: Generate edilen token
       
-
 
       # Plugin
           # Plugin yazmak için volume tanımında  - ./plugins:/opt/sonarqube/extensions/plugins yaptık ve otomatik olarak proje dizininde plugins geldi.
