@@ -115,7 +115,7 @@ Firefox tarayıcısı için video hizmeti.
 
 ## Kaynaklar
 
-- https://www.youtube.com/watch?v=NjQ5zZM7fpI
+- https://www.youtube.com/watch?v=NjQ5zZM7fpI    -- //todo Scale 1+ chrome command + Vnc Viewer 
 - https://www.youtube.com/watch?v=r1gdJ-QICmY
 
 Not: Şifre "secret" olarak ayarlanmıştır.
