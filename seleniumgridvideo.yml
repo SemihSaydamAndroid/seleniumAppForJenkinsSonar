@@ -129,7 +129,7 @@ services:
       - FILE_NAME=firefox_video.mp4
 
 # VideoService service'inin içine bağlanmak için exec komutu : docker exec -it seleniumVideo bash
-# https://www.youtube.com/watch?v=NjQ5zZM7fpI
+# https://www.youtube.com/watch?v=NjQ5zZM7fpI  -- //todo Scale 1+ chrome command + Vnc Viewer 
 # https://www.youtube.com/watch?v=r1gdJ-QICmY
 
 #secret is password
