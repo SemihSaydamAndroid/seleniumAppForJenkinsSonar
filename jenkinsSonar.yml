@@ -165,3 +165,7 @@ volumes:
 
       # PS C:\Users\Semih\Desktop\Discipline\Projects\DevOps\Shell> docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 017a
       # 172.21.0.6 --> sonarqube
+
+# todo : gherkin language ekleme
+# todo : gherkin scanner jar'ı indir sonarqube'a ekle volume üzerinden.
+# todo : plugin'i kendi cümleleriniz için nasıl değiştirebiliz, co-pilot ile ona çalış.

@@ -26,10 +26,8 @@ pipeline {
                 }
             }
         }
-
     }
 }
-
 
 //Jenkinsfile'ı repoya koymanıza rağmen tanımıyorsa[not a git repository] : 
 //  cd /var/jenkins_home

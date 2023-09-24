@@ -35,7 +35,12 @@ public class BaseTest {
         options.addArguments("--enable-gpu");
         options.merge(desiredCapabilities);
 
-        WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);
+        // For Jenkins-Selenium Hub ["4445:4444"] Jenkins 4444
+        // WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);
+
+        // For Local-Selenium Hub  ["4445:4444"] Local 4445 --> local için localhost veya 0.0.0.0 yazılabilir. 
+        WebDriver webDriver = new RemoteWebDriver(URI.create("http://0.0.0.0:4445/wd/hub").toURL(), options);
+
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         webDriver.manage().window().maximize();
         setWebDriver(webDriver);
