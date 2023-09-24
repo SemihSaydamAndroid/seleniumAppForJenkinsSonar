@@ -129,3 +129,13 @@ volumes:
       # docker container logs seleniumHub > sth.txt
       # sth.txt -- 04:04:42.159 INFO [Hub.execute] - Started Selenium Hub 4.12.1 (revision 8e34639b11): http://172.21.0.2:4444
       # Bu adresi testinizde vermelisiniz : WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);            
+
+# Sonarqube
+  # http://localhost:9000/ --> admin/admin ile ilk giriş yapılıp; şifre değiştirme ekranına gidilir.
+  # http://localhost:9000/account/security/ --> Generate Tokens --> Token Name verilip Generate edilir.
+  # Jenkins --> Manage Jenkins --> Configure System --> SonarQube servers --> Add SonarQube --> Name: SonarQube | Server URL: http://sonarqube:9000 | Server authentication token: Generate edilen token
+  # Jenkins --> Manage Jenkins --> Global Tool Configuration --> SonarQube Scanner --> Name: SonarQubeScanner | Install automatically: işaretli | Install from Maven Central: işaretli
+  # Jenkins --> Manage Jenkins --> Configure System --> SonarQube servers --> Add SonarQube --> Name: SonarQubeScanner | Server URL: http://sonarqube:9000 | Server authentication token: Generate edilen token
+  
+  # Plugin
+      # Plugin yazmak için volume tanımında  - ./plugins:/opt/sonarqube/extensions/plugins yaptık ve otomatik olarak proje dizininde plugins geldi.
