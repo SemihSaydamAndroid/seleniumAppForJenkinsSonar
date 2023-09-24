@@ -93,8 +93,8 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-      - C:\Program Files\Docker\Docker\resources\bin\docker.exe:/usr/bin/docker
-      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+        bash -c "cd /var/jenkins_home && git config --global --add safe.directory '*' && chown -R 1000:1000 /var/jenkins_home && /usr/local/bin/jenkins.sh"
     depends_on:
       - HubService
     
@@ -133,12 +133,16 @@ volumes:
       # Bu adresi testinizde vermelisiniz : WebDriver webDriver = new RemoteWebDriver(URI.create("http://172.21.0.2:4444/wd/hub").toURL(), options);            
 
 # Sonarqube
-  # http://localhost:9000/ --> admin/admin ile ilk giriş yapılıp; şifre değiştirme ekranına gidilir.
-  # http://localhost:9000/account/security/ --> Generate Tokens --> Token Name verilip Generate edilir.
-  # Jenkins'e SonarScanner plugin kurulur : https://funnelgarden.com/sonarqube-jenkins-docker/
-  # Jenkins --> Manage Jenkins --> Configure System --> SonarQube servers --> Add SonarQube --> Name: SonarQube | Server URL: http://sonarqube:9000 | Server authentication token: Generate edilen token
-  # Jenkins --> Manage Jenkins --> Global Tool Configuration --> SonarQube Scanner --> Name: SonarQubeScanner | Install automatically: işaretli | Install from Maven Central: işaretli
-  # Jenkins --> Manage Jenkins --> Configure System --> SonarQube servers --> Add SonarQube --> Name: SonarQubeScanner | Server URL: http://sonarqube:9000 | Server authentication token: Generate edilen token
-  
-  # Plugin
-      # Plugin yazmak için volume tanımında  - ./plugins:/opt/sonarqube/extensions/plugins yaptık ve otomatik olarak proje dizininde plugins geldi.
+      # http://localhost:9000/ --> admin/admin ile ilk giriş yapılıp; şifre değiştirme ekranına gidilir.
+      # http://localhost:9000/account/security/ --> Generate Tokens --> Token Name verilip Generate edilir.
+      # Jenkins'e SonarScanner plugin kurulur : https://funnelgarden.com/sonarqube-jenkins-docker/
+          # webhook tanımlıyoruz. BaseTest'te jenkins ip'sini vermiştik yine onunla webook tanımlıyacağız:
+          # http://localhost:9000/admin/webhooks --> Name: Jenkins | URL: http://172.21.0.2:8080/sonarqube-webhook/ | Secret: Generate edilen token<squ_ae0d062b92d5874e86c569fe8cce58d8fba048ac>
+      # Jenkins --> Manage Jenkins -->  System --> SonarQube servers --> Add SonarQube --> Name: SonarQube | Server URL: http://sonarqube:9000 | Server authentication token: Generate edilen token
+      # Jenkins --> Manage Jenkins --> Global Tool Configuration --> SonarQube Scanner --> Name: SonarQubeScanner | Install automatically: işaretli | Install from Maven Central: işaretli
+      # Jenkins --> Manage Jenkins --> Configure System --> SonarQube servers --> Add SonarQube --> Name: SonarQubeScanner | Server URL: http://sonarqube:9000 | Server authentication token: Generate edilen token
+      
+
+
+      # Plugin
+          # Plugin yazmak için volume tanımında  - ./plugins:/opt/sonarqube/extensions/plugins yaptık ve otomatik olarak proje dizininde plugins geldi.
