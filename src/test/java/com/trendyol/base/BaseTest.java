@@ -41,6 +41,7 @@ public class BaseTest {
         // For Local-Selenium Hub  ["4445:4444"] Local 4445 --> local için localhost veya 0.0.0.0 yazılabilir. 
         //WebDriver webDriver = new RemoteWebDriver(URI.create("http://0.0.0.0:4445/wd/hub").toURL(), options);
 
+
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         webDriver.manage().window().maximize();
         setWebDriver(webDriver);
