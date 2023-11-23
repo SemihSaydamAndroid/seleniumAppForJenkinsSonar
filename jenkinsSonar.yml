@@ -176,14 +176,15 @@ volumes:
       # cevap: evet otomatik algılanıyor.
       # soru: jenkins ayarlarında sonarqube server'a https://sonarqube:9000 şeklinde tanımladık. Bu nasıl çalışıyor?
         # cevap: dns ile çalışıyor. sonarqube container'ının ip'si değişse bile dns ile ulaşılabilir.
+    # todo dns üzerinden kaldırınca tüm ayarlar gitmiş, burada ayarları yapmak gerekiyor. token hatası o yüzden veriyor.
+    # todo ayarların gitmemesi için volume tanımını nasıl yapmak gerekiyor? jenkins için de aynı şekilde.
 
 # todo : gherkin language ekleme
 # todo : gherkin scanner jar'ı indir sonarqube'a ekle volume üzerinden.
 # todo : plugin'i kendi cümleleriniz için nasıl değiştirebiliz, co-pilot ile ona çalış.
 
 # copilot
-# soru: Docker-compose'da örneğin sonarqube'u ayağa kaldırırken ip'si değişiyor. Bunun değişmemesini nasıl sağlarım?
-# cevap: container_name vererek.
-# cevap: container_name verdiğimde ip'siz dns ile ulaşılabilir.
-# soru: peki dns ile sonarqube adresini jenkinse nasıl tanımlayacağım? DNS otomatik mi algılanacak?
-# cevap: evet otomatik algılanıyor.
+# soru: [ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.10.0.2594:sonar (default-cli) on project Trendyol_SemihSaydam: Not authorized. Please check the user token in the property 'sonar.token' or the credentials in the properties 'sonar.login' and 'sonar.password'. -> [Help 1]
+
+
+
