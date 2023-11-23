@@ -1,6 +1,12 @@
-com\trendyol\base\BasePage.class
+com\gherkinTest\Runner\Runner.class
+com\gherkinTest\Steps\RegisterStep.class
+com\gherkinTest\Base\BaseStep$TimeOut.class
 com\trendyol\base\BaseTest.class
 com\trendyol\constants\constants.class
 com\trendyol\test\Scenario1PAGETest.class
+com\gherkinTest\Base\BaseStep$Pather.class
+com\gherkinTest\Base\BaseStep.class
+com\gherkinTest\Base\BaseStep$1.class
+com\trendyol\base\BasePage.class
 com\trendyol\constants\constantsLoginPage.class
 com\trendyol\page\Scenario_1_PAGE.class

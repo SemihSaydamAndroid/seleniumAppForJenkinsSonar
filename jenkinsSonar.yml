@@ -101,6 +101,7 @@ services:
     
   sonarqube:
     image: sonarqube:latest
+    container_name: sonarqube
     ports:
       - "9000:9000" 
     volumes:
@@ -155,8 +156,7 @@ volumes:
 
 
  # Önemli, ip konusu. Jenkins-selenium hub | Jenkins-sonarqube
- # //todo ip'siz dns ile docker-compose.yml'de container_name vererek de ulaşılabilir.
-      # şu komut ile container ip'lerine ulaşabilirsin. 
+      # şu komut ile container ip'lerine ulaşabilirsin.
           # docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <sonarqube_container_id>
       # PS C:\Users\Semih\Desktop\Discipline\Projects\DevOps\Shell> docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 1261                    
       # 172.21.0.3  --> jenkins
@@ -167,10 +167,23 @@ volumes:
       # PS C:\Users\Semih\Desktop\Discipline\Projects\DevOps\Shell> docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 017a
       # 172.21.0.6 --> sonarqube
 
+# todo : DNS
+      # ip'siz dns ile docker-compose.yml'de container_name vererek de ulaşılabilir.
+      # soru: Docker-compose'da örneğin sonarqube'u ayağa kaldırırken ip'si değişiyor. Bunun değişmemesini nasıl sağlarım?
+      # cevap: container_name vererek.
+      # cevap: container_name verdiğimde ip'siz dns ile ulaşılabilir.
+      # soru: peki dns ile sonarqube adresini jenkinse nasıl tanımlayacağım? DNS otomatik mi algılanacak?
+      # cevap: evet otomatik algılanıyor.
+      # soru: jenkins ayarlarında sonarqube server'a https://sonarqube:9000 şeklinde tanımladık. Bu nasıl çalışıyor?
+        # cevap: dns ile çalışıyor. sonarqube container'ının ip'si değişse bile dns ile ulaşılabilir.
+
 # todo : gherkin language ekleme
 # todo : gherkin scanner jar'ı indir sonarqube'a ekle volume üzerinden.
 # todo : plugin'i kendi cümleleriniz için nasıl değiştirebiliz, co-pilot ile ona çalış.
 
 # copilot
-# soru: mvn -q daki -q nedir? yardımcı olabilir misin?
-# cevap:
+# soru: Docker-compose'da örneğin sonarqube'u ayağa kaldırırken ip'si değişiyor. Bunun değişmemesini nasıl sağlarım?
+# cevap: container_name vererek.
+# cevap: container_name verdiğimde ip'siz dns ile ulaşılabilir.
+# soru: peki dns ile sonarqube adresini jenkinse nasıl tanımlayacağım? DNS otomatik mi algılanacak?
+# cevap: evet otomatik algılanıyor.
