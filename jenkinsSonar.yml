@@ -1,4 +1,5 @@
 # docker-compose -f .\jenkinsSonar.yml up -d
+
 version: "3"
 services:
   HubService:
@@ -169,3 +170,7 @@ volumes:
 # todo : gherkin language ekleme
 # todo : gherkin scanner jar'ı indir sonarqube'a ekle volume üzerinden.
 # todo : plugin'i kendi cümleleriniz için nasıl değiştirebiliz, co-pilot ile ona çalış.
+
+# copilot
+# soru: mvn -q daki -q nedir? yardımcı olabilir misin?
+# cevap:
