@@ -29,6 +29,7 @@ else
 fi
 
 git_url="https://$username:$access_token@github.com/$username/$repo_name.git"
+echo "git_url = git_url"
 
 cd "$project_path" || exit
 
