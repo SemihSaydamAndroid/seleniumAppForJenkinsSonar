@@ -88,6 +88,7 @@ services:
   jenkins:
     image: jenkins/jenkins:lts
     user: root
+    container_name: jenkins
     privileged: true  # privileged özelliği, Docker ayrıcalıklarını etkinleştirir ve Jenkins ajanının Docker konteynerlerini oluşturmasına ve yönetmesine olanak tanır.
     ports:
       - "8080:8080"
@@ -112,6 +113,7 @@ services:
 
 volumes:
   jenkins_home:
+  sonarqube:
   plugins:
     external: true
 
@@ -125,6 +127,7 @@ volumes:
       # Jenkins açıldıktan sonra Manage Jenkins --> Tools --> JDK | Git | Maven'a default isimler verip; automatically install yap
       # Sonarqube için SonarScanner plugin'i indirip Jenkins'e yükle
 
+    # Bunun için tanıme command ekledik:
       #Jenkinsfile'ı repoya koymanıza rağmen tanımıyorsa[not a git repository] : 
       #  cd /var/jenkins_home
       #  git config --global --add safe.directory '*'
