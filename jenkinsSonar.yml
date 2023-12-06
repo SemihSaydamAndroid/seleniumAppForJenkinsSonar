@@ -93,7 +93,7 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - jenkins_home:/var/jenkins_home
+      - ./jenkins_home:/var/jenkins_home
     command: >
         bash -c "cd /var/jenkins_home && git config --global --add safe.directory '*' && chown -R 1000:1000 /var/jenkins_home && /usr/local/bin/jenkins.sh"
     depends_on:
@@ -105,7 +105,8 @@ services:
     ports:
       - "9000:9000" 
     volumes:
-      - ./plugins:/opt/sonarqube/extensions/plugins
+      - ./sonarqube/plugins:/opt/sonarqube/extensions/plugins
+      - ./sonarqube/sonarqube_data:/opt/sonarqube/data
     depends_on:
       - jenkins
 
