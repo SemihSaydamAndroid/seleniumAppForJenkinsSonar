@@ -3,4 +3,4 @@ TestRecordings/*.mp4
 .idea
 .vscode
 jenkins_home
-sonarqube/plugins
+sonarqube/sonarqube_data
