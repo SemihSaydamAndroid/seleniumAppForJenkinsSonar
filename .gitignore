@@ -4,3 +4,4 @@ TestRecordings/*.mp4
 .vscode
 jenkins_home
 sonarqube/sonarqube_data
+GitCommitters/gitcommiter.sh
