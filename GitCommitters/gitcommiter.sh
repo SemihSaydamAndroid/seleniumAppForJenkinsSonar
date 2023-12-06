@@ -13,6 +13,7 @@ read -p "Proje yolunu giriniz [varsayılan: /Users/kullanici/proje]: " project_p
 project_path="${project_path:-/Users/asaf/Desktop/Discipline/projects/DDevOps/seleniumAppForJenkinsSonar}"
 echo "project_path = $project_path"
 
+
 personal_access_token="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"
 work_access_token="<work_access_token>"
 
