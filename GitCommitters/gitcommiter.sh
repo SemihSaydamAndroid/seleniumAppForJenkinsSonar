@@ -14,7 +14,7 @@ project_path="${project_path:-/Users/asaf/Desktop/Discipline/projects/DDevOps/se
 echo "project_path = $project_path"
 
 
-personal_access_token="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"
+personal_access_token=""
 work_access_token="<work_access_token>"
 
 if [ "$account_type" == "work" ]; then
