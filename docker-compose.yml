@@ -132,6 +132,10 @@ volumes:
       #  cd /var/jenkins_home
       #  git config --global --add safe.directory '*'
 
+    # volumes tanımı olmazsa ya ./ lazımdır fakat yukarıda direkt jenkins_home:... verdik ve oldu.
+      # ya da yezma yetkisiyle alakaldırı. Local terminalinde sudo chown -R 1000:1000 ./jenkins_home şeklinde yetki verdik.
+
+
 # Jenkins - SeleniumHUB configurations
       # Docker üzerinden kaldırdığınız jenkins ip'sine göre hub vermek gerekiyor: 
       # docker container logs seleniumHub > sth.txt
