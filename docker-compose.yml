@@ -1,4 +1,4 @@
-# docker-compose -f .\jenkinsSonar.yml up -d
+# docker-compose -f .\docker-compose.yml up -d
 
 version: "3"
 services:
@@ -94,7 +94,7 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - ./jenkins_home:/var/jenkins_home
+      - jenkins_home:/var/jenkins_home
     command: >
         bash -c "cd /var/jenkins_home && git config --global --add safe.directory '*' && chown -R 1000:1000 /var/jenkins_home && /usr/local/bin/jenkins.sh"
     depends_on:
