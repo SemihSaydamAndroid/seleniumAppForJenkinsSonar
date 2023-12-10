@@ -184,8 +184,7 @@ volumes:
       # cevap: evet otomatik algılanıyor.
       # soru: jenkins ayarlarında sonarqube server'a https://sonarqube:9000 şeklinde tanımladık. Bu nasıl çalışıyor?
         # cevap: dns ile çalışıyor. sonarqube container'ının ip'si değişse bile dns ile ulaşılabilir.
-    # todo dns üzerinden kaldırınca tüm ayarlar gitmiş, burada ayarları yapmak gerekiyor. token hatası o yüzden veriyor.
-    # todo ayarların gitmemesi için volume tanımını nasıl yapmak gerekiyor? jenkins için de aynı şekilde.
+
 
 # todo : gherkin language ekleme
 # todo : gherkin scanner jar'ı indir sonarqube'a ekle volume üzerinden.
