@@ -44,13 +44,6 @@ public class Scenario1PAGETest extends BaseTest {
        log.info("**************** Trendyol test Started ***************");
        log.info("30 SANİYE BEKLENİYOR");
        Thread.sleep(6000);
-       getWebDriver().findElement(By.className("modal-close")).click();
-       WebElement element = getWebDriver().findElement(By.cssSelector("input[data-testid='suggestion']"));
-       element.sendKeys("Bilgisayar");
-       element.sendKeys(Keys.ENTER);
-
-       Thread.sleep(1000);
-       
        log.info("30 SANİYE BİTTİ");
 
     }
