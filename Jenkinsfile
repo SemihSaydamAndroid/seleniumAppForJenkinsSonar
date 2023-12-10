@@ -13,9 +13,19 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git'
             }
         }
+
+        stage('Sonarqube analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
-                sh 'mvn -q clean install'
+//                 sh 'mvn -q clean install'
+                sh 'mvn clean install'
             }
         }
 
