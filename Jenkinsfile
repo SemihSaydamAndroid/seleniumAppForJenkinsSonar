@@ -28,14 +28,6 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-
-        stage('Sonarqube analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
-                }
-            }
-        }
     }
 }
 
