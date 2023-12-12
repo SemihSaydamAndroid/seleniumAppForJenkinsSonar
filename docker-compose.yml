@@ -176,8 +176,12 @@ networks:
       # MacOS için docker compose up sırasında hatalar veriyordu linux için olmaz gibi warning'ler
         # gerçekten de chrome ayağa kaldırıp test koşamadı. Localden dene bunu, sonra jenkinsle.
         # çözüm için şurayı inceliyorum : https://hub.docker.com/u/seleniarm
+        # Yukarıdaki seleniarm'lar ile çalıştı.
 
-# Jenkins
+      # container ismini verip DNS çözümlemesi sağlayabilirsin. Sürekli değişir çünkü container ip'si
+      #      WebDriver webDriver = new RemoteWebDriver(URI.create("http://selenium-hub:4444/wd/hub").toURL(), options);
+
+      # Jenkins
       # Jenkins açıldıktan sonra Manage Jenkins --> Tools --> JDK | Git | Maven'a default isimler verip; automatically install yap
       # Sonarqube için SonarScanner plugin'i indirip Jenkins'e yükle
 
