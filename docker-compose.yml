@@ -1,4 +1,6 @@
 # docker-compose -f .\docker-compose.yml up -d
+# seleniarm çalışmama sebebi aynı container'ı çalıştırıp durman olabilir, docker-compose down container'ları silmez.Elle silmen gerekebilir.
+  #  docker ps -a --format "{{.ID}}\t{{.Names}}" --> isimleriyle container'ları gösterir.
 
 version: "3.8"
 services:
