@@ -43,7 +43,7 @@ public class Scenario1PAGETest extends BaseTest {
     public void testLogin() throws InterruptedException {
        log.info("**************** Trendyol test Started ***************");
        log.info("30 SANİYE BEKLENİYOR");
-       Thread.sleep(6000);
+       Thread.sleep(15000);
        log.info("30 SANİYE BİTTİ");
 
     }

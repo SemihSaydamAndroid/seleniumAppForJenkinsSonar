@@ -99,15 +99,15 @@ services:
 #      - HubService
 #      - jenkins
 #
-#  chrome_video:
-#    image: selenium/video:ffmpeg-4.3.1-20230920
-#    volumes:
-#      - ./TestRecordings:/videos
-#    depends_on:
-#      - ChromeService
-#    environment:
-#      - DISPLAY_CONTAINER_NAME=ChromeService
-#      - FILE_NAME=chrome_video.mp4
+  chrome_video:
+    image: selenium/video:ffmpeg-4.3.1-20230920
+    volumes:
+      - ./TestRecordings:/videos
+    depends_on:
+      - ChromeService
+    environment:
+      - DISPLAY_CONTAINER_NAME=ChromeService
+      - FILE_NAME=chrome_video.mp4
 
 #  edge_video:
 #    image: selenium/video:ffmpeg-4.3.1-20230920
@@ -118,16 +118,16 @@ services:
 #    environment:
 #      - DISPLAY_CONTAINER_NAME=EdgeService
 #      - FILE_NAME=edge_video.mp4
-#
-#  firefox_video:
-#    image: selenium/video:ffmpeg-4.3.1-20230920
-#    volumes:
-#      - ./TestRecordings:/videos
-#    depends_on:
-#      - FirefoxService
-#    environment:
-#      - DISPLAY_CONTAINER_NAME=FirefoxService
-#      - FILE_NAME=firefox_video.mp4
+
+  firefox_video:
+    image: selenium/video:ffmpeg-4.3.1-20230920
+    volumes:
+      - ./TestRecordings:/videos
+    depends_on:
+      - FirefoxService
+    environment:
+      - DISPLAY_CONTAINER_NAME=FirefoxService
+      - FILE_NAME=firefox_video.mp4
 
   jenkins:
     image: jenkins/jenkins:lts
