@@ -59,10 +59,10 @@ public class BaseTest {
                 chromeOptions.merge(desiredCapabilities);
 
                 // For Jenkins-Selenium Hub ["4445:4444"] Jenkins 4444
-//                WebDriver webDriver = new RemoteWebDriver(URI.create("http://selenium-hub:4444/wd/hub").toURL(), chromeOptions);
+                WebDriver webDriver = new RemoteWebDriver(URI.create("http://selenium-hub:4444/wd/hub").toURL(), chromeOptions);
 
                 // For Local-Selenium Hub  ["4445:4444"] Local 4445 --> local için localhost veya 0.0.0.0 yazılabilir.
-                WebDriver webDriver = new RemoteWebDriver(URI.create("http://0.0.0.0:4444/wd/hub").toURL(), chromeOptions);
+//                WebDriver webDriver = new RemoteWebDriver(URI.create("http://0.0.0.0:4444/wd/hub").toURL(), chromeOptions);
                 webDriver.manage().window().maximize();
                 setWebDriver(webDriver);
                 //chromeOptions.setBrowserVersion("115");
