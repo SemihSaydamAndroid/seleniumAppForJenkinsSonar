@@ -32,9 +32,6 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <logger name="org.sonarqube" additivity="false">
-            <level value="WARN" />
-        </logger>
         <Logger name="parallel.SearchSteps" level="info">
             <AppenderRef ref="SearchResults" />
         </Logger>
