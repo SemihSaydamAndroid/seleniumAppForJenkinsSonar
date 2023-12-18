@@ -34,11 +34,8 @@ pipeline {
                   script {
                   //kullanmak için "cucumber reports" plugin'ini kurman gerekir
                          cucumber buildStatus: 'UNSTABLE',
-                                 features: '**/*.json',
-                                 fileIncludePattern: '**/*.json',
-                                 sortingMethod: 'NATURAL',
-                                 trendStatsFile: '',
-                                 reportMainStats: false
+                                 fileIncludePattern: '**/cucumber.json',
+                                 sortingMethod: 'NATURAL'
                      }
              }
         }
