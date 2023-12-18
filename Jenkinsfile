@@ -32,6 +32,7 @@ pipeline {
         stage('Cucumber Report') {
              steps {
                   script {
+                  //kullanmak için "cucumber reports" plugin'ini kurman gerekir
                          cucumber buildStatus: 'UNSTABLE',
                                  features: '**/*.json',
                                  fileIncludePattern: '**/*.json',
