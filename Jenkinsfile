@@ -29,7 +29,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Cucumber Report') {
              steps {
                   script {
                          cucumber buildStatus: 'UNSTABLE',
@@ -40,9 +40,7 @@ pipeline {
                                  reportMainStats: false
                      }
              }
-
         }
-
     }
 }
 
