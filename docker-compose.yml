@@ -39,66 +39,6 @@ services:
         - "4443:4443"
         - "4444:4444"
 
-#  HubService:
-##    image: selenium/hub:latest
-#    image: seleniarm/hub:latest
-#    container_name: seleniumHub
-#    ports:
-#      - "4445:4444"
-#      - "4442:4442"
-#      - "4443:4443"
-#    networks:
-#      - selenium-network
-#
-#  ChromeService:
-##    image: selenium/node-chrome:latest
-#    image: seleniarm/standalone-chromium:latest
-#    shm_size: "2gb"
-#    ports:
-#      - "5900"
-#      - "7900"
-#    environment:
-#      - SE_EVENT_BUS_HOST=seleniumHub
-#      - SE_EVENT_BUS_PUBLISH_PORT=4442
-#      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-#      - SE_NODE_MAX_SESSIONS=4
-#    depends_on:
-#      - HubService
-#      - jenkins
-#    networks:
-#      - selenium-network
-#
-#  FirefoxService:
-##    image: selenium/node-firefox:latest
-#    image: seleniarm/standalone-firefox:latest
-#    shm_size: "2gb"
-#    ports:
-#      - "5900"
-#      - "7900"
-#    environment:
-#      - SE_EVENT_BUS_HOST=seleniumHub
-#      - SE_EVENT_BUS_PUBLISH_PORT=4442
-#      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-#      - SE_NODE_MAX_SESSIONS=2
-#    depends_on:
-#      - HubService
-#      - jenkins
-#
-#  EdgeService:
-#    image: selenium/node-edge:latest
-#    shm_size: "2gb"
-#    ports:
-#      - "5900"
-#      - "7900"
-#    environment:
-#      - SE_EVENT_BUS_HOST=seleniumHub
-#      - SE_EVENT_BUS_PUBLISH_PORT=4442
-#      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-#      - SE_NODE_MAX_SESSIONS=2
-#    depends_on:
-#      - HubService
-#      - jenkins
-#
   chrome_video:
     image: selenium/video:ffmpeg-4.3.1-20230920
     volumes:
@@ -109,15 +49,6 @@ services:
       - DISPLAY_CONTAINER_NAME=ChromeService
       - FILE_NAME=chrome_video.mp4
 
-#  edge_video:
-#    image: selenium/video:ffmpeg-4.3.1-20230920
-#    volumes:
-#      - ./TestRecordings:/videos
-#    depends_on:
-#      - EdgeService
-#    environment:
-#      - DISPLAY_CONTAINER_NAME=EdgeService
-#      - FILE_NAME=edge_video.mp4
 
   firefox_video:
     image: selenium/video:ffmpeg-4.3.1-20230920
@@ -174,6 +105,7 @@ networks:
       # https://www.youtube.com/watch?v=r1gdJ-QICmY
 
       #secret is password for VNC video
+      #Askıda kalan session'u öldürme
 
       # MacOS için docker compose up sırasında hatalar veriyordu linux için olmaz gibi warning'ler
         # gerçekten de chrome ayağa kaldırıp test koşamadı. Localden dene bunu, sonra jenkinsle.

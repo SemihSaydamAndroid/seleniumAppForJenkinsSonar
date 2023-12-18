@@ -28,6 +28,21 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+
+        stage('Build') {
+             steps {
+                  script {
+                         cucumber buildStatus: 'UNSTABLE',
+                                 features: '**/*.json',
+                                 fileIncludePattern: '**/*.json',
+                                 sortingMethod: 'NATURAL',
+                                 trendStatsFile: '',
+                                 reportMainStats: false
+                     }
+             }
+
+        }
+
     }
 }
 
