@@ -4,10 +4,10 @@ Feature: Login Scenarios
     * Go to n11 login page
 
   Scenario: Successfully Login
-    When Username is entered from config
-    And Password is entered from config
-    And Clicking on sign in button
-    Then Check that logged in successfully
+    * Username is entered from config
+    * Password is entered from config
+    * Clicking on sign in button
+    * Check that logged in successfully
 
 #  Scenario: Empty Password
 #    When Username is entered from config
