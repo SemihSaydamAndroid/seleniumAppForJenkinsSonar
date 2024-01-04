@@ -17,7 +17,7 @@ pipeline {
         stage('Sonarqube analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn sonar:sonar -Dsonar.test.inclusions=src/test/java'
                 }
             }
         }
