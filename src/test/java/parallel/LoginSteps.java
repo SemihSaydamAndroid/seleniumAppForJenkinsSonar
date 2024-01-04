@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static constants.HomePageConstants.MY_ACCOUNT;
@@ -63,6 +64,7 @@ public class LoginSteps extends BasePage {
         logger.info("Checking that logged in successfully");
         checkElementDisplayed(MY_ACCOUNT);
         checkPageTitle(HOME_PAGE_TITLE);
+        checkElementDisplayed(By.xpath("//*[@automation='submitButton']"));
     }
 
     @Then("Check that empty password error")
