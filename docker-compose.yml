@@ -100,6 +100,12 @@ networks:
   selenium-network:
     driver: bridge
 
+
+# Jenkins
+      #    Jenkinsfile'ı repoya koymanıza rağmen tanımıyorsa[not a git repository] :
+      #      cd /var/jenkins_home
+      #      git config --global --add safe.directory '*'
+
 # Selenium HUB - selenium video
       # https://www.youtube.com/watch?v=NjQ5zZM7fpI  -- //todo Scale 1+ chrome command + Vnc Viewer 
       # https://www.youtube.com/watch?v=r1gdJ-QICmY

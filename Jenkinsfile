@@ -24,16 +24,15 @@ pipeline {
 
         stage('Build') {
             steps {
-//                 sh 'mvn -q clean install'
-                sh 'mvn clean install'
+
+                sh 'mvn clean install'  //quiet option -- sh 'mvn -q clean install'
             }
         }
 
         stage('Cucumber Report') {
              steps {
                   script {
-                  //kullanmak için "cucumber reports" plugin'ini kurman gerekir
-                         cucumber buildStatus: 'UNSTABLE',
+                         cucumber buildStatus: 'UNSTABLE', //kullanmak için "cucumber reports" plugin'ini kurman gerekir
                                  fileIncludePattern: '**/cucumber.json',
                                  sortingMethod: 'NATURAL'
                      }
@@ -42,6 +41,3 @@ pipeline {
     }
 }
 
-//Jenkinsfile'ı repoya koymanıza rağmen tanımıyorsa[not a git repository] : 
-//  cd /var/jenkins_home
-//  git config --global --add safe.directory '*'
