@@ -27,7 +27,7 @@ pipeline {
                                -Dsonar.projectKey=com.pointr:Pointr-cucumber \
                                -Dsonar.language=gherkin \
                                -Dsonar.test.inclusions=src/test/java/resources/parallel \
-                               -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel"
+                               -Dsonar.sources=pom.xml,src/test/resources/parallel"
                     }
                 }
             }
