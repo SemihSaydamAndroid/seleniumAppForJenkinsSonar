@@ -23,7 +23,7 @@ pipeline {
                 script {
                     // SonarQube Scanner kullanarak analiz yap
                     withSonarQubeEnv('SonarQube') {
-                        sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=com.pointr:Pointr-cucumber -Dsonar.language=gherkin -Dsonar.test.inclusions=src/test/java/resources/parallel"
+                        sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=com.pointr:Pointr-cucumber -Dsonar.language=gherkin -Dsonar.java.binaries=**/target/classes  -Dsonar.test.inclusions=src/test/java/resources/parallel"
 //                         sh 'mvn sonar:sonar -Dsonar.projectKey=com.pointr:Pointr-cucumber -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver'
                     }
                 }
