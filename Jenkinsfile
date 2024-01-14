@@ -4,8 +4,6 @@ pipeline {
     tools {
         maven 'mvnDefault'
         git 'gitDefault'
-        // Jenkins'ta "Global Tool Configuration" bölümünde eklediğiniz "SonarScanner" için bir referans ekleyin
-        sonarQubeScanner 'SonarScanner'
     }
 
     stages {
