@@ -4,8 +4,8 @@ pipeline {
     tools {
         maven 'mvnDefault'
         git 'gitDefault'
-        // SonarQube Scanner installations ekleyin
-        sonarqube 'SonarQube'
+        // Jenkins'ta "Global Tool Configuration" bölümünde eklediğiniz "SonarScanner" için bir referans ekleyin
+        sonarQubeScanner 'SonarScanner'
     }
 
     stages {
@@ -20,9 +20,8 @@ pipeline {
             steps {
                 script {
                     // SonarQube Scanner kullanarak analiz yap
-                    def scannerHome = tool 'SonarQube'
-                    withEnv(["PATH+MAVEN=${tool 'mvnDefault'}/bin"]) {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver"
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver'
                     }
                 }
             }
@@ -30,7 +29,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'  //quiet option -- sh 'mvn -q clean install'
+                sh 'mvn clean install'
             }
         }
 
