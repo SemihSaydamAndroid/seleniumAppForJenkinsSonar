@@ -4,6 +4,8 @@ pipeline {
     tools {
         maven 'mvnDefault'
         git 'gitDefault'
+        // SonarQube Scanner installations ekleyin
+        sonarqube 'SonarQube'
     }
 
     stages {
@@ -16,28 +18,30 @@ pipeline {
 
         stage('Sonarqube analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver'
+                script {
+                    // SonarQube Scanner kullanarak analiz yap
+                    def scannerHome = tool 'SonarQube'
+                    withEnv(["PATH+MAVEN=${tool 'mvnDefault'}/bin"]) {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver"
+                    }
                 }
             }
         }
 
         stage('Build') {
             steps {
-
                 sh 'mvn clean install'  //quiet option -- sh 'mvn -q clean install'
             }
         }
 
         stage('Cucumber Report') {
-             steps {
-                  script {
-                         cucumber buildStatus: 'UNSTABLE', //kullanmak için "cucumber reports" plugin'ini kurman gerekir
-                                 fileIncludePattern: '**/cucumber.json',
-                                 sortingMethod: 'NATURAL'
-                     }
-             }
+            steps {
+                script {
+                    cucumber buildStatus: 'UNSTABLE',
+                            fileIncludePattern: '**/cucumber.json',
+                            sortingMethod: 'NATURAL'
+                }
+            }
         }
     }
 }
-
