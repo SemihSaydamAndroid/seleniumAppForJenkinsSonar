@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        jvmOptions('-Dsome.property=value', '-Xmx512m', '--add-opens java.base/java.lang=ALL-UNNAMED', '--add-opens=java.base/java.util=ALL-UNNAMED')
+    }
+
     tools {
         maven 'mvnDefault'
         git 'gitDefault'
@@ -21,7 +25,7 @@ pipeline {
         stage('Sonarqube analysis') {
             steps {
                 script {
-                    // SonarQube Scanner kullanarak analiz yap
+//                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
                        sh "${scannerHome}/bin/sonar-scanner -X \
                                -Dsonar.projectKey=com.pointr:Pointr-cucumber \
