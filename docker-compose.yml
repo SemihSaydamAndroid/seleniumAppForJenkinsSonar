@@ -78,7 +78,9 @@ services:
         bash -c "cd /var/jenkins_home && git config --global --add safe.directory '*' && chown -R 1000:1000 /var/jenkins_home && /usr/local/bin/jenkins.sh"
     depends_on:
       - HubService
-    
+    environment:
+      - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED
+
   sonarqube:
     image: sonarqube:latest
     container_name: sonarqube
