@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    options {
-        jvmOptions('-Dsome.property=value', '-Xmx512m', '--add-opens java.base/java.lang=ALL-UNNAMED', '--add-opens=java.base/java.util=ALL-UNNAMED')
-    }
-
     tools {
         maven 'mvnDefault'
         git 'gitDefault'
@@ -27,11 +23,14 @@ pipeline {
                 script {
 //                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
-                       sh "${scannerHome}/bin/sonar-scanner -X \
-                               -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-                               -Dsonar.language=gherkin \
-                               -Dsonar.test.inclusions=src/test/java/resources/parallel \
-                               -Dsonar.sources=pom.xml,src/test/java/resources/parallel"
+                       sh """
+                            ${scannerHome}/bin/sonar-scanner -X \
+                            -Dsonar.projectKey=com.pointr:Pointr-cucumber \
+                            -Dsonar.language=gherkin \
+                            -Dsonar.test.inclusions=src/test/java/resources/parallel \
+                            -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
+                            -Dsome.property=value -Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED
+                        """
                     }
                 }
             }
