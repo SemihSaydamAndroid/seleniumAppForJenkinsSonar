@@ -85,12 +85,23 @@ services:
     image: sonarqube:latest
     container_name: sonarqube
     ports:
-      - "9000:9000" 
+      - "9000:9000"
     volumes:
       - ./sonarqube/plugins:/opt/sonarqube/extensions/plugins
       - ./sonarqube/sonarqube_data:/opt/sonarqube/data
     depends_on:
       - jenkins
+
+# Jenkins --> "8081:8081"
+#  jira:
+#    image: dchevell/jira-software-arm64
+#    restart: always
+#    privileged: true
+#    user: root
+#    volumes:
+#      - ./jiraVolume:/var/atlassian/application-data/jira
+#    ports:
+#      - "8080:8080"
 
 volumes:
   jenkins_home:

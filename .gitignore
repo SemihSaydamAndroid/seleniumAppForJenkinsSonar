@@ -6,3 +6,4 @@ jenkins_home
 plugins
 sonarqube/sonarqube_data
 GitCommitters/gitcommiter.sh
+jiraVolume
