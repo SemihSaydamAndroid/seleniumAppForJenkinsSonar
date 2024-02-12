@@ -1006,3 +1006,6 @@
 2024-02-09 11:45:08,634 ContainerBackgroundProcessor[StandardEngine[Catalina]]      HttpSession [pp2e3t] destroyed for 'anonymous'
 2024-02-09 11:45:08,634 ContainerBackgroundProcessor[StandardEngine[Catalina]]      HttpSession [10po03a] destroyed for 'anonymous'
 2024-02-09 11:45:08,635 ContainerBackgroundProcessor[StandardEngine[Catalina]]      HttpSession [doucb0] destroyed for 'anonymous'
+2024-02-12 06:54:01,163 JIRA-Bootstrap      JIRA 8.5.1 build: 805001 started. You can now access JIRA through your web browser.
+2024-02-12 06:55:03,535 http-nio-8080-exec-1 anonymous 415x1x1 - 127.0.0.1 /rest/gadgets/1.0/g/feed HttpSession created [fbrt5q]
+2024-02-12 06:56:39,388 ContainerBackgroundProcessor[StandardEngine[Catalina]]      HttpSession [fbrt5q] destroyed for 'anonymous'

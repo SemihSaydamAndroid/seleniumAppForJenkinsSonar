@@ -1,4 +1,4 @@
-@Search
+@smoke
 Feature: Search Scenarios
   Background:
     Given Go to n11 home page
