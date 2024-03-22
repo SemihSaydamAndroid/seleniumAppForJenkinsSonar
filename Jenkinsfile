@@ -79,19 +79,18 @@ pipeline {
                     def dbTable = 'test_results'
 
                     withEnv(["MYSQL_USER=user", "MYSQL_PASSWORD=password"]) {
-                        sh """
-                            docker run --network seleniumappforjenkinssonar_network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
-                                INSERT INTO ${dbTable} (passed, failed, duration)
-                                VALUES (${passed}, ${failed}, ${duration});
-                            \"'
-                        """
+                      sh """
+                          docker run --network seleniumappforjenkinssonar_network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
+                              INSERT INTO ${dbTable} (passed, failed, duration)
+                              VALUES (${passed}, ${failed}, ${duration});
+                          \"'
+                      """
 
-                        // SELECT sorgusu eklenmiştir.
-                        sh """
-                            docker run --network seleniumappforjenkinssonar_network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
-                                SELECT * FROM ${dbTable};
-                            \"'
-                        """
+                      sh """
+                          docker run --network seleniumappforjenkinssonar_network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
+                              SELECT * FROM ${dbTable};
+                          \"'
+                      """
                     }
                 }
             }

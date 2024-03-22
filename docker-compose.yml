@@ -268,7 +268,7 @@ networks:
 #  ✔ Container seleniumappforjenkinssonar-ChromeService-1   Running           0.0s
 
 
-## ÖNEMLİ - müthiş - DOCKER SOCKET KONUSU. DOCKER ile docker cli'ı jenkins container'ına bağlama
+## ÖNEMLİ - Docker in docker  - müthiş - DOCKER SOCKET KONUSU. DOCKER ile docker cli'ı jenkins container'ına bağlama
 #    - /var/run/docker.sock:/var/run/docker.sock  # Docker socket'ı eklenmiştir.
 #    Bu docker socket ile docker cli'ı jenkins container'ınıza bağlayıp jenkins contaer'ında istediğini kurmanı sağlıyor. Müthişş
 #
@@ -283,6 +283,9 @@ networks:
 ## Burada hata aldık çünkü jenkins image'ı içinde docker cli yok tabi. Bunu bir dockerfile'da ekleyip sonra
 ## docker build -t my-jenkins-image . komutu ile içinde jenkins:lts ve docker-cli olan yeni bir jenkins image'ı oluşturuyoruz.
 ## sonra bunu gidip docker-compose.yml'de jenkins image'ı yerine my-jenkins-image yazıyoruz. Ve çalıştırıyoruz.
+## Artık jenkins'ten docker push atabilirsin. Yani Deployment yapabilirsin adım adım jenkinsfile'ında. docker socket'ine bağlısın
+## Burada Dockerfile yerine direkt /var/.. volume eklemeyle oluyor jenkinse, onun peşine de düşebilirsin.
+
 
 ## ÖNEMLİ - NETWORK konusu
 # Burada mysql ve jenkins'i aynı network'e bağlaman gerekiyor bu arada ağ haberleşmesini yapabilmeleri için bu da önemli.
