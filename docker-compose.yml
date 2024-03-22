@@ -279,6 +279,7 @@ networks:
 #    VALUES (10, 2, 300);
 #  \"'
 #"""
+## btw --rm mysql:8.0 sh bu container'ı işi bitince siler. Komutunu çalıştırır ve siler.
 ## Burada hata aldık çünkü jenkins image'ı içinde docker cli yok tabi. Bunu bir dockerfile'da ekleyip sonra
 ## docker build -t my-jenkins-image . komutu ile içinde jenkins:lts ve docker-cli olan yeni bir jenkins image'ı oluşturuyoruz.
 ## sonra bunu gidip docker-compose.yml'de jenkins image'ı yerine my-jenkins-image yazıyoruz. Ve çalıştırıyoruz.

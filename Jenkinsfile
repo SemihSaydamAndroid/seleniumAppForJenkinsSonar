@@ -60,12 +60,6 @@ pipeline {
             }
         }
 
-        stage('Set Docker socket permissions') {
-            steps {
-                sh 'sudo chmod 666 /var/run/docker.sock'
-            }
-        }
-
         stage('Check network-bridge') {
             steps {
                 sh 'docker ps'
