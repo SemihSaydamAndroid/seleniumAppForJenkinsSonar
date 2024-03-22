@@ -18,7 +18,7 @@ services:
       - SE_NODE_MAX_SESSIONS=2
     #      - SE_NODE_SESSION_TIMEOUT=180
     networks:
-      - network-bridge
+      - seleniumappforjenkinssonar_network-bridge
 
 
   FirefoxService:
@@ -34,7 +34,7 @@ services:
         - SE_NODE_MAX_SESSIONS=1
     #      - SE_NODE_SESSION_TIMEOUT=180
       networks:
-        - network-bridge
+        - seleniumappforjenkinssonar_network-bridge
 
 
   HubService:
@@ -45,7 +45,7 @@ services:
         - "4443:4443"
         - "4444:4444"
       networks:
-        - network-bridge
+        - seleniumappforjenkinssonar_network-bridge
 
 
   chrome_video:
@@ -93,7 +93,7 @@ services:
     environment:
       - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED
     networks:
-      - network-bridge
+      - seleniumappforjenkinssonar_network-bridge
 
   sonarqube:
     image: sonarqube:latest
@@ -106,7 +106,7 @@ services:
     depends_on:
       - jenkins
     networks:
-      - network-bridge
+      - seleniumappforjenkinssonar_network-bridge
 
   mysql:
    image: mysql:8.0
@@ -123,7 +123,7 @@ services:
      - "3306:3306"
    restart: always
    networks:
-     - network-bridge
+     - seleniumappforjenkinssonar_network-bridge
 
   grafana:
     image: grafana/grafana:latest
@@ -135,7 +135,7 @@ services:
       - ./grafana/grafana_dashboards:/var/lib/grafana/dashboards
       - ./grafana/grafana_provisioning:/etc/grafana/provisioning
     networks:
-      - network-bridge
+      - seleniumappforjenkinssonar_network-bridge
 
 # Jenkins --> "8081:8081"
 #  jira:
@@ -289,7 +289,10 @@ networks:
 # -->Grafana servisi, network-bridge adlı ağa bağlanır. Bu, Grafana'nın MySQL servisi ile aynı ağda olmasını ve MySQL servisi ile iletişim kurabilmesini sağlar
 # EĞER SONARQUBE'U Bu network'e bağlamazsan ulaşamaz. Bir network oluşturuyorsan tüm servisleri aynı network'e bağlamalısın.
 # depends_on ile çalışıyordu fakat artık network'e 2 şeyi bağlıyorsan birini bağlamıyorsan o ulşamamaya başlıyor. Çok öenmli bir konu.
-
+# NETWORK'UN yanlış olduğu için 2 saat uğraştın :D Network komutlarında container'larının network'ün altında görünmesi gerekiyor:
+## docker network ls
+## docker network inspect network-bridge
+## benim network ismin saçma oluştuğu için öyle olmuş --> network ls komutundan keşfettim --> seleniumappforjenkinssonar_network-bridge
 
 ## Grafana
 # vet, Grafana'nın ayarlarını ve gösterge tablolarını otomatik olarak yüklemek için bir yapılandırma dosyası kullanabilirsiniz. Grafana, JSON formatında dışa aktarılan ve içe aktarılan gösterge tablolarını destekler. Bu, Grafana'nın her başlatıldığında aynı gösterge tablolarını ve ayarları yüklemesini sağlar.  Öncelikle, Grafana'da oluşturduğunuz gösterge tablolarını JSON formatında dışa aktarmanız gerekiyor. Bunu, Grafana kullanıcı arayüzünde gösterge tablosunu açıp "Share" seçeneğini seçerek ve ardından "Export" sekmesine tıklayarak yapabilirsiniz. Bu, gösterge tablosunu bir JSON dosyası olarak dışa aktarmanızı sağlar.  Daha sonra, bu JSON dosyalarını Docker Compose dosyasında belirttiğiniz bir volume'a yerleştirebilirsiniz. Bu volume, Grafana container'ının /var/lib/grafana/dashboards dizinine bağlanmalıdır. Bu, Grafana'nın başlatıldığında bu dizindeki tüm JSON dosyalarını otomatik olarak yüklemesini sağlar.  Ayrıca, Grafana'nın bu gösterge tablolarını otomatik olarak yüklemesi için bir yapılandırma dosyası oluşturmanız gerekiyor. Bu yapılandırma dosyası, Grafana'nın /etc/grafana/provisioning/dashboards dizinine yerleştirilmelidir. Bu yapılandırma dosyası, Grafana'nın hangi gösterge tablolarını yüklemesi gerektiğini belirtir.  Docker Compose dosyanızı aşağıdaki gibi güncelleyebilirsiniz

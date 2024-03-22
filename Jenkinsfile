@@ -63,7 +63,8 @@ pipeline {
         stage('Check network-bridge') {
             steps {
                 sh 'docker ps'
-                sh 'docker network inspect network-bridge'
+                sh 'docker network ls'
+                sh 'docker network inspect seleniumappforjenkinssonar_network-bridge'
             }
         }
 
@@ -79,7 +80,7 @@ pipeline {
 
                     withEnv(["MYSQL_USER=user", "MYSQL_PASSWORD=password"]) {
                         sh """
-                            docker run --network network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
+                            docker run --network seleniumappforjenkinssonar_network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
                                 INSERT INTO ${dbTable} (passed, failed, duration)
                                 VALUES (${passed}, ${failed}, ${duration});
                             \"'
@@ -87,7 +88,7 @@ pipeline {
 
                         // SELECT sorgusu eklenmiştir.
                         sh """
-                            docker run --network network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
+                            docker run --network seleniumappforjenkinssonar_network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
                                 SELECT * FROM ${dbTable};
                             \"'
                         """
