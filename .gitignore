@@ -3,6 +3,8 @@ TestRecordings/*.mp4
 .idea
 .vscode
 jenkins_home
+init.sql
+mysql_data
 plugins
 sonarqube/sonarqube_data
 GitCommitters/gitcommiter.sh

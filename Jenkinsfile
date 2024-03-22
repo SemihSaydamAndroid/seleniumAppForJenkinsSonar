@@ -57,5 +57,30 @@ pipeline {
                 }
             }
         }
+
+          stage('Test') {
+                    steps {
+                        // Test adımlarınız burada olacak
+                        // Test sonuçlarınızı elde edin ve aşağıdaki değerlere atayın
+                        script {
+                            def passed = 10
+                            def failed = 2
+                            def duration = 300
+                            def dbHost = 'mysql'  // MySQL servisinizin adı
+                            def dbUser = 'root'  // MySQL kullanıcı adınız
+                            def dbPassword = 'root'  // MySQL şifreniz
+                            def dbName = 'test_database'  // Veritabanı adınız
+                            def dbTable = 'test_results'  // Tablo adınız
+
+                            // MySQL komutlarını çalıştıran bir shell script oluşturun
+                            sh """
+                                mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
+                                    INSERT INTO ${dbTable} (passed, failed, duration)
+                                    VALUES (${passed}, ${failed}, ${duration});
+                                \"
+                            """
+                        }
+                    }
+          }
     }
 }

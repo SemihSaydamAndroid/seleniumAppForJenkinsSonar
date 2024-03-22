@@ -49,7 +49,7 @@ services:
       - DISPLAY_CONTAINER_NAME=ChromeService
       - FILE_NAME=chrome_video.mp4
 
-
+##todo bunlarsız da direkt olarak video açılıyor. Bunları uçur
   firefox_video:
     image: selenium/video:ffmpeg-4.3.1-20230920
     volumes:
@@ -78,6 +78,7 @@ services:
         bash -c "cd /var/jenkins_home && git config --global --add safe.directory '*' && chown -R 1000:1000 /var/jenkins_home && /usr/local/bin/jenkins.sh"
     depends_on:
       - HubService
+      - mysql
     environment:
       - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED
 
@@ -91,6 +92,21 @@ services:
       - ./sonarqube/sonarqube_data:/opt/sonarqube/data
     depends_on:
       - jenkins
+
+  mysql:
+      image: mysql:8.0
+      container_name: mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: test_database
+        MYSQL_USER: user
+        MYSQL_PASSWORD: password
+      volumes:
+        - ./mysql_data:/var/lib/mysql
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      ports:
+        - "3306:3306"
+      restart: always
 
 # Jenkins --> "8081:8081"
 #  jira:
@@ -106,6 +122,7 @@ services:
 volumes:
   jenkins_home:
   sonarqube:
+  mysql_data:
   plugins:
     external: true
 
