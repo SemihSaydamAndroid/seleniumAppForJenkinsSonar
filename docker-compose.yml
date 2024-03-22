@@ -70,7 +70,8 @@ services:
       - FILE_NAME=firefox_video.mp4
 
   jenkins:
-    image: jenkins/jenkins:lts
+#    image: jenkins/jenkins:lts
+    image: my-jenkins-image
     deploy:
       resources:
         limits:
@@ -85,7 +86,7 @@ services:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock  # Docker socket'ı eklenmiştir.
     command: >
-        bash -c "cd /var/jenkins_home && git config --global --add safe.directory '*' && chown -R 1000:1000 /var/jenkins_home && /usr/local/bin/jenkins.sh"
+        bash -c "chmod 666 /var/run/docker.sock && cd /var/jenkins_home && git config --global --add safe.directory '*' && chown -R 1000:1000 /var/jenkins_home && /usr/local/bin/jenkins.sh"
     depends_on:
       - HubService
       - mysql
@@ -108,21 +109,21 @@ services:
       - network-bridge
 
   mysql:
-      image: mysql:8.0
-      container_name: mysql
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: test_database
-        MYSQL_USER: user
-        MYSQL_PASSWORD: password
-      volumes:
-        - ./mysql_data:/var/lib/mysql
-        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      ports:
-        - "3306:3306"
-      restart: always
-      networks:
-        - network-bridge
+   image: mysql:8.0
+   container_name: mysql
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_DATABASE: test_database
+     MYSQL_USER: user
+     MYSQL_PASSWORD: password
+   volumes:
+     - ./mysql_data:/var/lib/mysql
+     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+   ports:
+     - "3306:3306"
+   restart: always
+   networks:
+     - network-bridge
 
   grafana:
     image: grafana/grafana:latest
@@ -151,7 +152,7 @@ volumes:
   jenkins_home:
   sonarqube:
   mysql_data:
-  grafa_data:
+  grafana:
   plugins:
     external: true
 
@@ -278,6 +279,9 @@ networks:
 #    VALUES (10, 2, 300);
 #  \"'
 #"""
+## Burada hata aldık çünkü jenkins image'ı içinde docker cli yok tabi. Bunu bir dockerfile'da ekleyip sonra
+## docker build -t my-jenkins-image . komutu ile içinde jenkins:lts ve docker-cli olan yeni bir jenkins image'ı oluşturuyoruz.
+## sonra bunu gidip docker-compose.yml'de jenkins image'ı yerine my-jenkins-image yazıyoruz. Ve çalıştırıyoruz.
 
 ## ÖNEMLİ - NETWORK konusu
 # Burada mysql ve jenkins'i aynı network'e bağlaman gerekiyor bu arada ağ haberleşmesini yapabilmeleri için bu da önemli.
