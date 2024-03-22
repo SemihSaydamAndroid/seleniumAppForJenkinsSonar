@@ -74,6 +74,7 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock  # Docker socket'ı eklenmiştir.
     command: >
         bash -c "cd /var/jenkins_home && git config --global --add safe.directory '*' && chown -R 1000:1000 /var/jenkins_home && /usr/local/bin/jenkins.sh"
     depends_on:
@@ -81,6 +82,8 @@ services:
       - mysql
     environment:
       - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED
+    networks:
+      - network-bridge
 
   sonarqube:
     image: sonarqube:latest
@@ -107,6 +110,8 @@ services:
       ports:
         - "3306:3306"
       restart: always
+      networks:
+        - network-bridge
 
 # Jenkins --> "8081:8081"
 #  jira:
@@ -127,7 +132,7 @@ volumes:
     external: true
 
 networks:
-  selenium-network:
+  network-bridge:
     driver: bridge
 
 
@@ -236,3 +241,18 @@ networks:
 #  ✔ Container jenkins                                      Running           0.0s
 #  ✔ Container sonarqube                                    Running           0.0s
 #  ✔ Container seleniumappforjenkinssonar-ChromeService-1   Running           0.0s
+
+
+## Önemli - müthiş
+#    - /var/run/docker.sock:/var/run/docker.sock  # Docker socket'ı eklenmiştir.
+#    Bu docker socket ile docker cli'ı jenkins container'ınıza bağlayıp jenkins contaer'ında istediğini kurmanı sağlıyor. Müthişş
+#
+#  Sonra jenkinsfile'ında aşağıdakileri diyebiliyorsun.
+#  sh """
+#  docker run --network <network_name> --rm mysql:8.0 sh -c 'mysql -h mysql -u root -proot test_database -e \"
+#    INSERT INTO test_results (passed, failed, duration)
+#    VALUES (10, 2, 300);
+#  \"'
+#"""
+# Burada mysql ve jenkins'i aynı network'e bağlaman gerekiyor bu arada ağ haberleşmesini yapabilmeleri için bu da önemli.
+#

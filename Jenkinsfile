@@ -58,29 +58,33 @@ pipeline {
             }
         }
 
-          stage('Test') {
-                    steps {
-                        // Test adımlarınız burada olacak
-                        // Test sonuçlarınızı elde edin ve aşağıdaki değerlere atayın
-                        script {
-                            def passed = 10
-                            def failed = 2
-                            def duration = 300
-                            def dbHost = 'mysql'  // MySQL servisinizin adı
-                            def dbUser = 'root'  // MySQL kullanıcı adınız
-                            def dbPassword = 'root'  // MySQL şifreniz
-                            def dbName = 'test_database'  // Veritabanı adınız
-                            def dbTable = 'test_results'  // Tablo adınız
+        stage('MySQL Connection') {
+                steps {
+                    script {
+                        def passed = 10
+                        def failed = 2
+                        def duration = 300
+                        def dbHost = 'mysql'
+                        def dbUser = 'root'
+                        def dbPassword = 'root'
+                        def dbName = 'test_database'
+                        def dbTable = 'test_results'
 
-                            // MySQL komutlarını çalıştıran bir shell script oluşturun
-                            sh """
-                                mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
-                                    INSERT INTO ${dbTable} (passed, failed, duration)
-                                    VALUES (${passed}, ${failed}, ${duration});
-                                \"
-                            """
-                        }
+                        sh """
+                            docker run --network <network_name> --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
+                                INSERT INTO ${dbTable} (passed, failed, duration)
+                                VALUES (${passed}, ${failed}, ${duration});
+                            \"'
+                        """
+
+                        // SELECT sorgusu eklenmiştir.
+                        sh """
+                            docker run --network <network_name> --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
+                                SELECT * FROM ${dbTable};
+                            \"'
+                        """
                     }
-          }
+                }
+        }
     }
 }
