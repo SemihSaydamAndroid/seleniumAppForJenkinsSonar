@@ -71,7 +71,7 @@ pipeline {
                         def dbTable = 'test_results'
 
                         sh """
-                            docker run --network <network_name> --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
+                            docker run --network network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
                                 INSERT INTO ${dbTable} (passed, failed, duration)
                                 VALUES (${passed}, ${failed}, ${duration});
                             \"'
@@ -79,7 +79,7 @@ pipeline {
 
                         // SELECT sorgusu eklenmiştir.
                         sh """
-                            docker run --network <network_name> --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
+                            docker run --network network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
                                 SELECT * FROM ${dbTable};
                             \"'
                         """

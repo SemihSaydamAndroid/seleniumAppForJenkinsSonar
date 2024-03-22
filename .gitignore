@@ -5,6 +5,7 @@ TestRecordings/*.mp4
 jenkins_home
 init.sql
 mysql_data
+grafana
 plugins
 sonarqube/sonarqube_data
 GitCommitters/gitcommiter.sh
