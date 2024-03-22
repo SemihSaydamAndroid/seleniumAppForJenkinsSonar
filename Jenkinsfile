@@ -7,6 +7,8 @@ pipeline {
     }
 
     environment {
+            MYSQL_USER = 'root'
+            MYSQL_PASSWORD = 'root'
          scannerHome = tool 'SonarScanner' // the name you have given the Sonar Scanner (in Global Tool Configuration)
     }
 
@@ -72,19 +74,18 @@ pipeline {
         }
 
         stage('MySQL Connection') {
-                steps {
-                    script {
-                        def passed = 10
-                        def failed = 2
-                        def duration = 300
-                        def dbHost = 'mysql'
-                        def dbUser = 'root'
-                        def dbPassword = 'root'
-                        def dbName = 'test_database'
-                        def dbTable = 'test_results'
+            steps {
+                script {
+                    def passed = 10
+                    def failed = 2
+                    def duration = 300
+                    def dbHost = 'mysql'
+                    def dbName = 'test_database'
+                    def dbTable = 'test_results'
 
+                    withEnv(["MYSQL_USER=user", "MYSQL_PASSWORD=password"]) {
                         sh """
-                            docker run --network network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
+                            docker run --network network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
                                 INSERT INTO ${dbTable} (passed, failed, duration)
                                 VALUES (${passed}, ${failed}, ${duration});
                             \"'
@@ -92,12 +93,13 @@ pipeline {
 
                         // SELECT sorgusu eklenmiştir.
                         sh """
-                            docker run --network network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u ${dbUser} -p${dbPassword} ${dbName} -e \"
+                            docker run --network network-bridge --rm mysql:8.0 sh -c 'mysql -h ${dbHost} -u \$MYSQL_USER -p\$MYSQL_PASSWORD ${dbName} -e \"
                                 SELECT * FROM ${dbTable};
                             \"'
                         """
                     }
                 }
+            }
         }
     }
 }
