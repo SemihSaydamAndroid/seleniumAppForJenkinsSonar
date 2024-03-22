@@ -71,9 +71,9 @@ pipeline {
         stage('MySQL Connection') {
             steps {
                 script {
-                    def passed = 10
-                    def failed = 2
-                    def duration = 300
+                    def passed = 5
+                    def failed = 10
+                    def duration = 350
                     def dbHost = 'mysql'
                     def dbName = 'test_database'
                     def dbTable = 'test_results'
