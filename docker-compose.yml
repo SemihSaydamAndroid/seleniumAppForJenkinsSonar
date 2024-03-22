@@ -18,7 +18,7 @@ services:
       - SE_NODE_MAX_SESSIONS=2
     #      - SE_NODE_SESSION_TIMEOUT=180
     networks:
-      - seleniumappforjenkinssonar_network-bridge
+      - my_network
 
 
   FirefoxService:
@@ -34,7 +34,7 @@ services:
         - SE_NODE_MAX_SESSIONS=1
     #      - SE_NODE_SESSION_TIMEOUT=180
       networks:
-        - seleniumappforjenkinssonar_network-bridge
+        - my_network
 
 
   HubService:
@@ -45,7 +45,7 @@ services:
         - "4443:4443"
         - "4444:4444"
       networks:
-        - seleniumappforjenkinssonar_network-bridge
+        - my_network
 
 
   chrome_video:
@@ -93,7 +93,7 @@ services:
     environment:
       - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED
     networks:
-      - seleniumappforjenkinssonar_network-bridge
+      - my_network
 
   sonarqube:
     image: sonarqube:latest
@@ -106,7 +106,7 @@ services:
     depends_on:
       - jenkins
     networks:
-      - seleniumappforjenkinssonar_network-bridge
+      - my_network
 
   mysql:
    image: mysql:8.0
@@ -123,7 +123,7 @@ services:
      - "3306:3306"
    restart: always
    networks:
-     - seleniumappforjenkinssonar_network-bridge
+     - my_network
 
   grafana:
     image: grafana/grafana:latest
@@ -135,18 +135,7 @@ services:
       - ./grafana/grafana_dashboards:/var/lib/grafana/dashboards
       - ./grafana/grafana_provisioning:/etc/grafana/provisioning
     networks:
-      - seleniumappforjenkinssonar_network-bridge
-
-# Jenkins --> "8081:8081"
-#  jira:
-#    image: dchevell/jira-software-arm64
-#    restart: always
-#    privileged: true
-#    user: root
-#    volumes:
-#      - ./jiraVolume:/var/atlassian/application-data/jira
-#    ports:
-#      - "8080:8080"
+      - my_network
 
 volumes:
   jenkins_home:
@@ -157,7 +146,7 @@ volumes:
     external: true
 
 networks:
-  network-bridge:
+  my_network:
     driver: bridge
 
 
@@ -295,7 +284,9 @@ networks:
 # NETWORK'UN yanlış olduğu için 2 saat uğraştın :D Network komutlarında container'larının network'ün altında görünmesi gerekiyor:
 ## docker network ls
 ## docker network inspect network-bridge
-## benim network ismin saçma oluştuğu için öyle olmuş --> network ls komutundan keşfettim --> seleniumappforjenkinssonar_network-bridge
+## benim network ismin saçma oluştuğu için öyle olmuş --> network ls komutundan keşfettim --> my_network
+#!!!! # BURADA OTOMATİK OLARAK NETWORK İSMİNE PROJE İSMİNİ DE EKLEMİŞ. FAKAT SEN MESELA NETWORK: my_network yaptıysan yukarıdaki servise'lere de
+      # my_network yazmalısın. Yoksa aynı networkte olmazlar. Fakat Jenkinsfile'ında docker run --network seleniumappforjenkinssonar_my_network yazman gerekiyor!!!
 
 ## Grafana
 # vet, Grafana'nın ayarlarını ve gösterge tablolarını otomatik olarak yüklemek için bir yapılandırma dosyası kullanabilirsiniz. Grafana, JSON formatında dışa aktarılan ve içe aktarılan gösterge tablolarını destekler. Bu, Grafana'nın her başlatıldığında aynı gösterge tablolarını ve ayarları yüklemesini sağlar.  Öncelikle, Grafana'da oluşturduğunuz gösterge tablolarını JSON formatında dışa aktarmanız gerekiyor. Bunu, Grafana kullanıcı arayüzünde gösterge tablosunu açıp "Share" seçeneğini seçerek ve ardından "Export" sekmesine tıklayarak yapabilirsiniz. Bu, gösterge tablosunu bir JSON dosyası olarak dışa aktarmanızı sağlar.  Daha sonra, bu JSON dosyalarını Docker Compose dosyasında belirttiğiniz bir volume'a yerleştirebilirsiniz. Bu volume, Grafana container'ının /var/lib/grafana/dashboards dizinine bağlanmalıdır. Bu, Grafana'nın başlatıldığında bu dizindeki tüm JSON dosyalarını otomatik olarak yüklemesini sağlar.  Ayrıca, Grafana'nın bu gösterge tablolarını otomatik olarak yüklemesi için bir yapılandırma dosyası oluşturmanız gerekiyor. Bu yapılandırma dosyası, Grafana'nın /etc/grafana/provisioning/dashboards dizinine yerleştirilmelidir. Bu yapılandırma dosyası, Grafana'nın hangi gösterge tablolarını yüklemesi gerektiğini belirtir.  Docker Compose dosyanızı aşağıdaki gibi güncelleyebilirsiniz
@@ -312,3 +303,26 @@ networks:
 #      - network-bridge
 #
 # Bu yapılandırma, ./grafana_dashboards dizinindeki tüm JSON dosyalarını Grafana container'ının /var/lib/grafana/dashboards dizinine ve ./grafana_provisioning dizinindeki tüm yapılandırma dosyalarını Grafana container'ının /etc/grafana/provisioning dizinine bağlar.
+## GRAFANA OTOMATİK MYSQL BAĞLI GELMESİ
+# grafana_provisioning/
+        #└── datasources
+        #    └── mysql.yaml
+# şeklinde olmalı dosya dizini ve bunun yanında içeriği de şöyle bir şey olmalı :
+#apiVersion: 1
+#datasources:
+#  - name: MySQL
+#    type: mysql
+#    access: proxy
+#    url: mysql:3306
+#    database: test_database
+#    user: user
+#    password: password
+#    jsonData:
+#      timeField: 'timestamp'
+#    secureJsonFields:
+#      password: true
+#    isDefault: true
+##
+## GRAFANA OTOMATİK DASHBOARD OLUŞTURULU GELMESİ
+##Grafana Dashboard Ayarları: Grafana'da kullanmak istediğiniz dashboard'ı önceden oluşturun ve yapılandırın. Daha sonra bu dashboard'ı JSON formatında dışa aktarın. Grafana arayüzünde, "Settings" bölümüne giderek "Export" sekmesini seçebilir ve dashboard'ınızı JSON olarak dışa aktarabilirsiniz.
+#Dashboard JSON Dosyasını Proje Dizinine Ekleyin: Docker Compose proje dizininize, oluşturduğunuz dashboard JSON dosyasını ekleyin. Örneğin, proje dizininizde bir dashboard.json dosyası oluşturun.

@@ -64,7 +64,7 @@ pipeline {
             steps {
                 sh 'docker ps'
                 sh 'docker network ls'
-                sh 'docker network inspect seleniumappforjenkinssonar_network-bridge'
+                sh 'docker network inspect seleniumappforjenkinssonar_my_network'
             }
         }
 
@@ -79,7 +79,7 @@ pipeline {
                     def dbTable = 'test_results'
 
                     sh """
-                        docker run --network seleniumappforjenkinssonar_network-bridge --rm mysql:8.0 sh -c "mysql -h ${dbHost} -u $MYSQL_USER -p$MYSQL_PASSWORD ${dbName} -e \
+                        docker run --network seleniumappforjenkinssonar_my_network --rm mysql:8.0 sh -c "mysql -h ${dbHost} -u $MYSQL_USER -p$MYSQL_PASSWORD ${dbName} -e \
                             'INSERT INTO ${dbTable} (passed, failed, duration) \
                             VALUES (${passed}, ${failed}, ${duration}); \
                             SELECT * FROM ${dbTable};'"
