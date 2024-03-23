@@ -326,3 +326,5 @@ networks:
 ## GRAFANA OTOMATİK DASHBOARD OLUŞTURULU GELMESİ
 ##Grafana Dashboard Ayarları: Grafana'da kullanmak istediğiniz dashboard'ı önceden oluşturun ve yapılandırın. Daha sonra bu dashboard'ı JSON formatında dışa aktarın. Grafana arayüzünde, "Settings" bölümüne giderek "Export" sekmesini seçebilir ve dashboard'ınızı JSON olarak dışa aktarabilirsiniz.
 #Dashboard JSON Dosyasını Proje Dizinine Ekleyin: Docker Compose proje dizininize, oluşturduğunuz dashboard JSON dosyasını ekleyin. Örneğin, proje dizininizde bir dashboard.json dosyası oluşturun.
+# NOT: Tek bir servisi kapatıp açma
+  # ekledikten sonra docker-compose stop grafana ve docker-compose up -d grafana yaparak güncellemeleri görebilirsin.
