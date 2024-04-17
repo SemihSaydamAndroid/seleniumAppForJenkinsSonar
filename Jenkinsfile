@@ -20,7 +20,18 @@ pipeline {
                  sh 'git config --global http.lowSpeedLimit 1000'
                  sh 'git config --global http.lowSpeedTime 180'
                  sh 'git config --global core.compression 0'
-                git branch: 'main', url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git'
+//                 git branch: 'main', url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git'
+                  checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: '*/main']],
+                            doGenerateSubmoduleConfigurations: false,
+                            extensions: [
+                                [$class: 'RelativeTargetDirectory', relativeTargetDir: ''],
+                                [$class: 'CheckoutOption', timeout: 100] // timeout value increased to 20
+                            ],
+                            submoduleCfg: [],
+                            userRemoteConfigs: [[url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git']]
+                        ])
             }
         }
 
