@@ -17,6 +17,8 @@ pipeline {
             steps {
                 cleanWs()
                 sh 'git config --global http.postBuffer 157286400'
+                sh 'git config --global http.lowSpeedLimit 1000'
+                sh 'git config --global http.lowSpeedTime 180'
                 git branch: 'main', url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git'
             }
         }
