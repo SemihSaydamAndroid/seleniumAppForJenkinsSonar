@@ -16,6 +16,7 @@ pipeline {
         stage('Clone repository') {
             steps {
                 cleanWs()
+                sh 'git config --global http.postBuffer 157286400'
                 git branch: 'main', url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git'
             }
         }
