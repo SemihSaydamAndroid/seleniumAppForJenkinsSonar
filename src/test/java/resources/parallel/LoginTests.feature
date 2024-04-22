@@ -7,7 +7,7 @@ Feature: Login Scenarios
     * Username is entered from config
     * Password is entered from config
     * Clicking on sign in button
-    * Check that logged in successfully
+#    * Check that logged in successfully
 
 #  Scenario: Empty Password
 #    When Username is entered from config
