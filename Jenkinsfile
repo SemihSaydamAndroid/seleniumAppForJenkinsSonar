@@ -9,17 +9,14 @@ pipeline {
     environment {
             MYSQL_USER = 'root'
             MYSQL_PASSWORD = 'root'
-         scannerHome = tool 'SonarScanner' // the name you have given the Sonar Scanner (in Global Tool Configuration)
+//          scannerHome = tool 'SonarScanner' // the name you have given the Sonar Scanner (in Global Tool Configuration)
     }
 
     stages {
         stage('Clone repository') {
             steps {
                 cleanWs()
-                sh 'git config --global http.postBuffer 157286400'
-                 sh 'git config --global http.lowSpeedLimit 1000'
-                 sh 'git config --global http.lowSpeedTime 180'
-                 sh 'git config --global core.compression 0'
+
 //                 git branch: 'main', url: 'https://github.com/SemihSaydamAndroid/seleniumAppForJenkinsSonar.git'
                   checkout([
                             $class: 'GitSCM',
