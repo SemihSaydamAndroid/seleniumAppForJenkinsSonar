@@ -65,6 +65,7 @@ pipeline {
         stage('Cucumber Report') {
             steps {
                 script {
+//                  kullanmak için plugin kurmanız gerekir.
                     cucumber buildStatus: 'UNSTABLE',
                             fileIncludePattern: '**/cucumber.json',
                             sortingMethod: 'NATURAL'

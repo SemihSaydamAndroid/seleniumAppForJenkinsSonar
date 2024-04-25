@@ -19,7 +19,7 @@ work_access_token="<work_access_token>"
 
 if [ "$account_type" == "work" ]; then
     git config --global user.name "----"
-    git config --global user.email "----@garantibbva.com.tr"
+    git config --global user.email "----@<domain_name>.com.tr"
     username="---"
     access_token="$work_access_token"
 else

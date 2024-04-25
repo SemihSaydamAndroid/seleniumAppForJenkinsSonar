@@ -15,7 +15,7 @@ set work_access_token=<work_access_token>
 
 if "%account_type%"=="work" (
     git config --global user.name ----
-    git config --global user.email ----@garantibbva.com.tr
+    git config --global user.email ----@.com.tr
     set username=---
     set access_token=%work_access_token% 
 ) else (
