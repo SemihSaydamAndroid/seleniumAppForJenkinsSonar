@@ -309,3 +309,65 @@ networks:
 #Dashboard JSON Dosyasını Proje Dizinine Ekleyin: Docker Compose proje dizininize, oluşturduğunuz dashboard JSON dosyasını ekleyin. Örneğin, proje dizininizde bir dashboard.json dosyası oluşturun.
 # NOT: Tek bir servisi kapatıp açma
   # ekledikten sonra docker-compose stop grafana ve docker-compose up -d grafana yaparak güncellemeleri görebilirsin.
+
+  #sonar admin123qweasd
+
+  #java ile quality profil ayarlayıp otomatik olarak rule'ları aktif etme :
+#
+#  import java.io.IOException;
+#  import java.net.HttpURLConnection;
+#  import java.net.URL;
+#  import java.nio.charset.StandardCharsets;
+#  import java.util.Base64;
+#
+#  public class SonarQubeManager {
+#
+#  private static final String SONARQUBE_URL = "http://your-sonarqube-url";
+#  private static final String SONARQUBE_USERNAME = "your-username";
+#  private static final String SONARQUBE_PASSWORD = "your-password";
+#
+#  private static String encodeCredentials() {
+#  String auth = SONARQUBE_USERNAME + ":" + SONARQUBE_PASSWORD;
+#  return Base64.getEncoder().encodeToString(auth.getBytes(StandardCharsets.UTF_8));
+#}
+#
+#  private static void sendPostRequest(String endpoint, String jsonInputString) throws IOException {
+#  URL url = new URL(SONARQUBE_URL + endpoint);
+#  HttpURLConnection con = (HttpURLConnection) url.openConnection();
+#  con.setRequestMethod("POST");
+#  con.setRequestProperty("Authorization", "Basic " + encodeCredentials());
+#  con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+#  con.setDoOutput(true);
+#
+#  byte[] out = jsonInputString.getBytes(StandardCharsets.UTF_8);
+#  con.getOutputStream().write(out);
+#
+#  int responseCode = con.getResponseCode();
+#  System.out.println("POST Response Code :: " + responseCode);
+#}
+#
+#  public static void createQualityProfile(String profileName, String language) throws IOException {
+#  String jsonInputString = "name=" + profileName + "&language=" + language;
+#  sendPostRequest("/api/qualityprofiles/create", jsonInputString);
+#}
+#
+#  public static void activateRule(String profileKey, String ruleKey) throws IOException {
+#  String jsonInputString = "profile_key=" + profileKey + "&rule_key=" + ruleKey;
+#  sendPostRequest("/api/qualityprofiles/activate_rule", jsonInputString);
+#}
+#
+#  public static void deactivateRule(String profileKey, String ruleKey) throws IOException {
+#  String jsonInputString = "profile_key=" + profileKey + "&rule_key=" + ruleKey;
+#  sendPostRequest("/api/qualityprofiles/deactivate_rule", jsonInputString);
+#}
+#
+#  public static void main(String[] args) {
+#  try {
+#  createQualityProfile("MyCustomProfile", "java");
+#  activateRule("java:MyCustomProfile", "java:S001");
+#  deactivateRule("java:MyCustomProfile", "java:S002");
+#} catch (IOException e) {
+#  e.printStackTrace();
+#}
+#}
+#}
