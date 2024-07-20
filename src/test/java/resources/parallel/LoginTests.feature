@@ -6,6 +6,11 @@ Feature: Login Scenarios
   Scenario: Successfully Login
     * Username is entered from config
     * Password is entered from config
+    * '2' saniye beklenir
+    * '30' saniye beklenir
+    * '24' saniye beklenir
+    * '52' saniye beklenir
+    * '72' saniye beklenir
     * Clicking on sign in button
 #    * Check that logged in successfully
 
