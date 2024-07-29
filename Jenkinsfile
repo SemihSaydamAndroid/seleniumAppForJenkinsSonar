@@ -70,17 +70,17 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-
-        stage('Cucumber Report') {
-            steps {
-                script {
-//                  kullanmak için plugin kurmanız gerekir.
-                    cucumber buildStatus: 'UNSTABLE',
-                            fileIncludePattern: '**/cucumber.json',
-                            sortingMethod: 'NATURAL'
-                }
-            }
-        }
+//
+//         stage('Cucumber Report') {
+//             steps {
+//                 script {
+// //                  kullanmak için plugin kurmanız gerekir.
+//                     cucumber buildStatus: 'UNSTABLE',
+//                             fileIncludePattern: '**/cucumber.json',
+//                             sortingMethod: 'NATURAL'
+//                 }
+//             }
+//         }
 
         stage('Check network-bridge') {
             steps {
