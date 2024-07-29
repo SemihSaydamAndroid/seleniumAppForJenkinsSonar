@@ -38,16 +38,19 @@ pipeline {
 //                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver'
-                            def sonarCommand = "mvn sonar:sonar " +
-                            "-Dsonar.sources=src " +
-                            "-Dsonar.language=gherkin " +
-                            "-Dsonar.test.inclusions=src/test/java " +
-                            "-Dsonar.qualitygate.wait=true " +
-                            "-Dsonar.profile=java-webdriver " +
-                            "-Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'"
+                    def sonarCommand = """
+                        mvn sonar:sonar \
+                        -Dsonar.sources=src \
+                        -Dsonar.language=gherkin \
+                        -Dsonar.test.inclusions=src/test/java \
+                        -Dsonar.qualitygate.wait=true \
+                        -Dsonar.profile=java-webdriver \
+                        -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
+                    """
 
-                            echo "sonar go go brr"
-                            sh '${sonarCommand}'
+                    echo "sonar go go brr"
+                    sh "${sonarCommand}"
+
 
 //                     todo testleri taraması için için aşağıdaki gibi language gherkin vereceksin :
 
