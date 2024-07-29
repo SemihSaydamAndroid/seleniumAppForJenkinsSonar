@@ -46,7 +46,8 @@ pipeline {
                             "-Dsonar.profile=java-webdriver " +
                             "-Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'"
 
-                            sh '$sonarCommand'
+                            echo "sonar go go brr"
+                            sh '${sonarCommand}'
 
 //                     todo testleri taraması için için aşağıdaki gibi language gherkin vereceksin :
 
