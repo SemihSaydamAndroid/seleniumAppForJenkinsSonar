@@ -40,13 +40,16 @@ pipeline {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver'
                     def sonarCommand = """
                         mvn sonar:sonar \
-                        -Dsonar.sources=src \
+                        -Dsonar.projectKey=com.pointr:Pointr-cucumber \
+                        -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
                         -Dsonar.language=gherkin \
-                        -Dsonar.test.inclusions=src/test/java \
+                        -Dsonar.test.inclusions=src/test/java/resources/parallel \
                         -Dsonar.qualitygate.wait=true \
                         -Dsonar.profile=java-webdriver \
                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
                     """
+
+                    //todo sonarda projenin quality profile'ine de ekledim.
 
                     echo "sonar go go brr"
                     sh "${sonarCommand}"
