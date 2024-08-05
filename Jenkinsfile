@@ -41,7 +41,7 @@ pipeline {
                     def sonarCommand = """
                         mvn sonar:sonar \
                         -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-                        -Dsonar.sources=src/test/java/resources/parallel \
+                        -Dsonar.sources=. \
                         -Dsonar.language=gherkin \
                         -Dsonar.test.inclusions=src/test/java/resources/parallel \
                         -Dsonar.qualitygate.wait=true \
