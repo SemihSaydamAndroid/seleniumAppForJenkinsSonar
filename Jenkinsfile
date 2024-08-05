@@ -45,7 +45,7 @@ pipeline {
                         -Dsonar.language=gherkin \
                         -Dsonar.test.inclusions=src/test/java/resources/parallel \
                         -Dsonar.qualitygate.wait=true \
-                        -Dsonar.profile=java-webdriver \
+                        -Dsonar.profile=cucumber-gherkin \
                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
                     """
 
