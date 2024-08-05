@@ -38,33 +38,35 @@ pipeline {
 //                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver'
-//                     def sonarCommand = """
-//                         mvn sonar:sonar \
-//                         -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-//                         -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
-//                         -Dsonar.language=gherkin \
-//                         -Dsonar.test.inclusions=src/test/java/resources/parallel \
-//                         -Dsonar.qualitygate.wait=true \
-//                         -Dsonar.profile=java-webdriver \
-//                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
-//                     """
+                    def sonarCommand = """
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=com.pointr:Pointr-cucumber \
+                        -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
+                        -Dsonar.language=gherkin \
+                        -Dsonar.test.inclusions=src/test/java/resources/parallel \
+                        -Dsonar.qualitygate.wait=true \
+                        -Dsonar.profile=java-webdriver \
+                        -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
+                    """
+
+                    sh sonarCommand
 
                     //todo sonarda projenin quality profile'ine de ekledim.
 //                     todo testleri taraması için için aşağıdaki gibi language gherkin vereceksin :
-
-                        sh """
-                            export JAVA_OPTS="-Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"
-                        """
-
-                       sh """
-
-                            ${scannerHome}/bin/sonar-scanner -X \
-                            -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-                            -Dsonar.language=gherkin \
-                            -Dsonar.test.inclusions=src/test/java/resources/parallel \
-                            -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
-                        """
-//                             -Dsome.property=value -Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED
+//
+//                         sh """
+//                             export JAVA_OPTS="-Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"
+//                         """
+//
+//                        sh """
+//
+//                             ${scannerHome}/bin/sonar-scanner -X \
+//                             -Dsonar.projectKey=com.pointr:Pointr-cucumber \
+//                             -Dsonar.language=gherkin \
+//                             -Dsonar.test.inclusions=src/test/java/resources/parallel \
+//                             -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
+//                         """
+// //                             -Dsome.property=value -Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED
 
                     }
                 }
