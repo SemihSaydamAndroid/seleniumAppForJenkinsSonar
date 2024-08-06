@@ -38,12 +38,7 @@ pipeline {
 //                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src/main/java -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
-                    sh """
-                        mvn sonar:sonar \
-                        -Dsonar.inclusions=**/*.feature \
-                        -Dsonar.qualitygate.wait=true \
-                        -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
-                    """
+                     sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver -Dsonar.scannerOpts="--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"'
 
 //       sh """
 //                         mvn sonar:sonar \
