@@ -71,7 +71,7 @@ pipeline {
                        sh """
                             ${scannerHome}/bin/sonar-scanner -X \
                             -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-                            -Dsonar.language=gherkin \
+                            -Dsonar.profile=cucumber \
                             -Dsonar.test.inclusions=src/test/java/resources/parallel \
                             -Dsonar.sources=pom.xml,src/main/resources,src/test/java/resources/parallel \
                         """
