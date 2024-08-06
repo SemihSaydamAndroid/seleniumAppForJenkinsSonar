@@ -41,6 +41,7 @@ pipeline {
                     sh """
                         mvn sonar:sonar \
                         -Dsonar.sources=src/main/java,features \
+                        -Dsonar.test.inclusions=src/test/java/resources/parallel/*.feature,features/*.feature \
                         -Dsonar.qualitygate.wait=true \
                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
                     """
