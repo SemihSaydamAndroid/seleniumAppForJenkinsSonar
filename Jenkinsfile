@@ -45,10 +45,13 @@ pipeline {
                         -Dsonar.tests=src/test/java/resources/parallel \
                         -Dsonar.inclusions=**/*.feature \
                         -Dsonar.qualitygate.wait=true \
-                        -Dsonar.profile=Cucumber Gherkin \
                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
                     """
-//                     sh sonarCommand
+//                     -Dsonar.sources=src/main/resources               --> ile alakasız bir yeri gösterebilirsin. feature'ların olmadığı bir kısım olabilir
+//                     -Dsonar.language=gherkin                         --> Plugin içinde bu şekilde verildiği için böyle verdik
+//                     -Dsonar.tests=src/test/java/resources/parallel   --> feature'ların olduğu klasör
+//                     -Dsonar.inclusions=**/*.feature                  --> sonar'ın tarayacağı şeyleri burada söylüyoruz
+//                     -Dsonar.profile=Cucumber Gherkin                 --> Yeni bir dil olduğu için
 
 //todo java reposu gibi taramaman lazım o yüzden direkt gherkin versen olmalı
 
