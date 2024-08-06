@@ -9,7 +9,7 @@ pipeline {
     environment {
             MYSQL_USER = 'root'
             MYSQL_PASSWORD = 'root'
-         scannerHome = tool 'sonar-scanner-6' // the name you have given the Sonar Scanner (in Global Tool Configuration)
+         scannerHome = tool 'sonar-scanner-6'
     }
 
     stages {
@@ -38,7 +38,8 @@ pipeline {
 //                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src/main/java -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
-                     sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=cucumber -Dsonar.scannerOpts="--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"'
+
+//                      sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=cucumber -Dsonar.scannerOpts="--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"'
 
 //       sh """
 //                         mvn sonar:sonar \
@@ -67,14 +68,12 @@ pipeline {
 //                             export JAVA_OPTS="-Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"
 //                         """
 //
-//                        sh """
-//
-//                             ${scannerHome}/bin/sonar-scanner -X \
-//                             -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-//                             -Dsonar.language=gherkin \
-//                             -Dsonar.test.inclusions=src/test/java/resources/parallel \
-//                             -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
-//                         """
+                       sh """
+                            ${scannerHome}/bin/sonar-scanner -X \
+                            -Dsonar.language=gherkin \
+                            -Dsonar.test.inclusions=src/test/java/resources/parallel \
+                            -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
+                        """
 // //                             -Dsome.property=value -Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED
 
                     }
