@@ -40,15 +40,26 @@ pipeline {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src/main/java -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
                     sh """
                         mvn sonar:sonar \
-                        -Dsonar.sources=src/test/java \
+                        -Dsonar.sources=features \
                         -Dsonar.profile=gherkin \
                         -Dsonar.language=gherkin \
-                        -Dsonar.inclusions=**/*.feature \
-                        -Dsonar.test.inclusions=src/test/java/resources/parallel/*.feature \
                         -Dsonar.qualitygate.wait=true \
                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
                     """
-                    //                        -Dsonar.inclusions=**/*.feature \
+
+//       sh """
+//                         mvn sonar:sonar \
+//                         -Dsonar.sources=src/test/java \
+//                         -Dsonar.profile=gherkin \
+//                         -Dsonar.language=gherkin \
+//                         -Dsonar.inclusions=**/*.feature \
+//                         -Dsonar.test.inclusions=src/test/java/resources/parallel/*.feature \
+//                         -Dsonar.qualitygate.wait=true \
+//                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
+//                     """
+//                     [INFO] 18:40:12.270   Included sources: **/*.feature
+//                        [INFO] 18:40:12.271   Excluded sources: src/test/java/resources/parallel/*.feature
+//                        [INFO] 18:40:12.273   Included tests: src/test/java/resources/parallel/*.feature
 
 //todo cannot index twice -->
 // mvn sonar:sonar -Dsonar.sources=. -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin
