@@ -40,7 +40,7 @@ pipeline {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src/main/java -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
                     sh """
                         mvn sonar:sonar \
-                        -Dsonar.sources=src/main/resources \
+                        -Dsonar.sources=pom.xml,src/main/java,src/main/resources,src/test/resources/parallel \
                         -Dsonar.language=gherkin \
                         -Dsonar.tests=src/test/java/resources/parallel \
                         -Dsonar.inclusions=**/*.feature \
@@ -51,13 +51,7 @@ pipeline {
 //                     -Dsonar.language=gherkin                         --> Plugin içinde bu şekilde verildiği için böyle verdik
 //                     -Dsonar.tests=src/test/java/resources/parallel   --> feature'ların olduğu klasör
 //                     -Dsonar.inclusions=**/*.feature                  --> sonar'ın tarayacağı şeyleri burada söylüyoruz
-//                     -Dsonar.profile=Cucumber Gherkin                 --> Yeni bir dil olduğu için
-
-//todo java reposu gibi taramaman lazım o yüzden direkt gherkin versen olmalı
-
-
-                    //todo sonarda projenin quality profile'ine de ekledim.
-//                     todo testleri taraması için için aşağıdaki gibi language gherkin vereceksin :
+//                     -Dsonar.profile=Cucumber Gherkin                 --> Yeni bir dil olduğu için kalite profili tanımlıyoruz
 //
 //                         sh """
 //                             export JAVA_OPTS="-Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"
