@@ -38,15 +38,18 @@ pipeline {
 //                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src/main/java -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
-                    sh """
-                        mvn sonar:sonar \
-                        -Dsonar.sources=pom.xml,src/main/resources,src/test/resources/parallel \
-                        -Dsonar.profile=gherkin \
-                        -Dsonar.tests=src/test/java/resources/parallel \
-                        -Dsonar.inclusions=**/*.feature \
-                        -Dsonar.qualitygate.wait=true \
-                        -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
-                    """
+//                     sh """
+//                         mvn sonar:sonar \
+//                         -Dsonar.sources=pom.xml,src/main/resources,src/test/resources/parallel \
+//                         -Dsonar.profile=gherkin \
+//                         -Dsonar.tests=src/test/java/resources/parallel \
+//                         -Dsonar.inclusions=**/*.feature \
+//                         -Dsonar.qualitygate.wait=true \
+//                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
+//                     """
+                    sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=gherkin'
+
+
 //                     -Dsonar.sources=src/main/resources               --> ile alakasız bir yeri gösterebilirsin. feature'ların olmadığı bir kısım olabilir
 //                     -Dsonar.language=gherkin                         --> Plugin içinde bu şekilde verildiği için böyle verdik
 //                     -Dsonar.tests=src/test/java/resources/parallel   --> feature'ların olduğu klasör
