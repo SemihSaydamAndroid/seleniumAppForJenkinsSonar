@@ -41,6 +41,7 @@ pipeline {
                     sh """
                         mvn sonar:sonar \
                         -Dsonar.sources=src/main/java,features \
+                        -Dsonar.inclusions=**/*.feature \
                         -Dsonar.profile=gherkin \
                         -Dsonar.language=gherkin \
                         -Dsonar.qualitygate.wait=true \
