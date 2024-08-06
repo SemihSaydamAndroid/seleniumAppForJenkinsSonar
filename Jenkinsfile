@@ -73,6 +73,7 @@ pipeline {
                             -Dsonar.projectKey=com.pointr:Pointr-cucumber \
                             -Dsonar.profile=cucumber \
                             -Dsonar.language=gherkin \
+                            -Dsonar.gherkin.file.suffixes=.feature \
                             -Dsonar.test.inclusions=src/test/java/resources/parallel \
                             -Dsonar.sources=pom.xml,src/main/resources,src/test/java/resources/parallel \
                         """
