@@ -38,15 +38,15 @@ pipeline {
 //                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true'
-                            sh 'mvn sonar:sonar -Dsonar.language=gherkin -Dsonar.sources=src/test/resources/features -Dsonar.inclusions=src/test/java/resources/parallel/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
+                            sh 'mvn sonar:sonar -Dsonar.language=gherkin -Dsonar.sources=src/test/resources/parallel/features -Dsonar.inclusions=src/test/java/resources/parallel/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
 //                     def sonarCommand = """
 //                         mvn sonar:sonar \
-//                         -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-//                         -Dsonar.sources=. \
 //                         -Dsonar.language=gherkin \
+//                         -Dsonar.sources=. \
 //                         -Dsonar.test.inclusions=src/test/java/resources/parallel \
 //                         -Dsonar.qualitygate.wait=true \
-//                         -Dsonar.profile=cucumber-gherkin \
+//                         -Dsonar.projectKey=com.pointr:Pointr-cucumber \
+//                         -Dsonar.profile=Cucumber Gherkin \
 //                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
 //                     """
 
