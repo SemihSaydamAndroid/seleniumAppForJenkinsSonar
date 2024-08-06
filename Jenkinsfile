@@ -43,7 +43,7 @@ pipeline {
                         -Dsonar.sources=src \
                         -Dsonar.profile=gherkin \
                         -Dsonar.language=gherkin \
-                        -Dsonar.test.inclusions=src/test/java/resources/parallel \
+                        -Dsonar.test.inclusions=src/test/java/resources/parallel/*.feature \
                         -Dsonar.qualitygate.wait=true \
                         -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED'
                     """
