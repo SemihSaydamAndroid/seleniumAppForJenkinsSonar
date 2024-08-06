@@ -37,8 +37,7 @@ pipeline {
                 script {
 //                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
-//                             sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true'
-                            sh 'mvn sonar:sonar -Dsonar.language=gherkin -Dsonar.tests=src/test/resources/parallel/features -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
+                            sh 'mvn sonar:sonar -Dsonar.sources=. -Dsonar.language=gherkin -Dsonar.tests=src/test/resources/parallel/features -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
 //                     def sonarCommand = """
 //                         mvn sonar:sonar \
 //                         -Dsonar.language=gherkin \
