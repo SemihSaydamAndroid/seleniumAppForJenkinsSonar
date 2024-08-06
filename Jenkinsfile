@@ -64,9 +64,9 @@ pipeline {
 //                     -Dsonar.inclusions=**/*.feature                  --> sonar'ın tarayacağı şeyleri burada söylüyoruz
 //                     -Dsonar.profile=Cucumber Gherkin                 --> Yeni bir dil olduğu için kalite profili tanımlıyoruz
 //
-//                         sh """
-//                             export JAVA_OPTS="-Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"
-//                         """
+                        sh """
+                            export JAVA_OPTS="-Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-modules java.xml.bind"
+                        """
 //
                        sh """
                             ${scannerHome}/bin/sonar-scanner -X \
