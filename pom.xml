@@ -10,7 +10,7 @@
 
 
     <properties>
-        <sonar.sources>pom.xml,src/main/java,src/main/resources,src/test/resources/features</sonar.sources>
+<!--        <sonar.sources>pom.xml,src/main/java,src/main/resources,src/test/resources/features</sonar.sources>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

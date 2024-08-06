@@ -6,7 +6,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/java/resources/parallel/",
+//        features = "src/test/java/resources/parallel/",
+        features = "features",
         plugin = {"json:target/cucumber-reports/cucumber.json", "pretty",
         "html:target/cucumber-reports/cucumberReport.html"},
         glue = {"parallel", "base"})
