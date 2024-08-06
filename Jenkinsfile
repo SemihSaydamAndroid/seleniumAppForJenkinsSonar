@@ -40,7 +40,7 @@ pipeline {
 //                             sh 'mvn sonar:sonar -Dsonar.sources=src/main/java -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
                     sh """
                         mvn sonar:sonar \
-                        -Dsonar.sources=features \
+                        -Dsonar.sources=. \
                         -Dsonar.profile=gherkin \
                         -Dsonar.language=gherkin \
                         -Dsonar.qualitygate.wait=true \
