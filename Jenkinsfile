@@ -35,55 +35,22 @@ pipeline {
         stage('Sonarqube analysis') {
             steps {
                 script {
-//                     export JAVA_HOME=/path/to/java-17
                     withSonarQubeEnv('SonarQube') {
-//                             sh 'mvn sonar:sonar -Dsonar.sources=src/main/java -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin'
-
-//                      sh 'mvn sonar:sonar -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=cucumber -Dsonar.scannerOpts="--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED"'
-
-                        sh """
-                            mvn sonar:sonar \
-                            -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-                            -Dsonar.profile=cucumber \
-                            -Dsonar.language=gherkin \
-                            -Dsonar.gherkin.file.suffixes=.feature \
-                            -Dsonar.test.inclusions=src/test/java/resources/parallel \
-                            -Dsonar.sources=pom.xml,src/main/resources,src/test/java/resources/parallel \
-                            -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-modules java.xml.bind'
-                        """
-//                     [INFO] 18:40:12.270   Included sources: **/*.feature
-//                        [INFO] 18:40:12.271   Excluded sources: src/test/java/resources/parallel/*.feature
-//                        [INFO] 18:40:12.273   Included tests: src/test/java/resources/parallel/*.feature
-
-//todo cannot index twice -->
-// mvn sonar:sonar -Dsonar.sources=. -Dsonar.language=gherkin -Dsonar.tests=src/test/java/resources/parallel -Dsonar.inclusions=**/*.feature -Dsonar.qualitygate.wait=true -Dsonar.profile=Cucumber Gherkin
-
-//                     -Dsonar.sources=src/main/resources               --> ile alakasız bir yeri gösterebilirsin. feature'ların olmadığı bir kısım olabilir
-//                     -Dsonar.language=gherkin                         --> Plugin içinde bu şekilde verildiği için böyle verdik
-//                     -Dsonar.tests=src/test/java/resources/parallel   --> feature'ların olduğu klasör
-//                     -Dsonar.inclusions=**/*.feature                  --> sonar'ın tarayacağı şeyleri burada söylüyoruz
-//                     -Dsonar.profile=Cucumber Gherkin                 --> Yeni bir dil olduğu için kalite profili tanımlıyoruz
-//
-//                         sh """
-//                             export JAVA_OPTS="-Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-modules java.xml.bind"
-//                         """
-// //
-//                        sh """
-//                             ${scannerHome}/bin/sonar-scanner -X \
-//                             -Dsonar.projectKey=com.pointr:Pointr-cucumber \
-//                             -Dsonar.profile=cucumber \
-//                             -Dsonar.language=gherkin \
-//                             -Dsonar.gherkin.file.suffixes=.feature \
-//                             -Dsonar.test.inclusions=src/test/java/resources/parallel \
-//                             -Dsonar.sources=pom.xml,src/main/resources,src/test/java/resources/parallel \
-//                         """
-// //                             -Dsome.property=value -Xmx512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED
+                            sh """
+                                mvn sonar:sonar \
+                                -Dsonar.projectKey=com.pointr:Pointr-cucumber \
+                                -Dsonar.profile=cucumber \
+                                -Dsonar.language=gherkin \
+                                -Dsonar.gherkin.file.suffixes=.feature \
+                                -Dsonar.test.inclusions=src/test/java/resources/parallel \
+                                -Dsonar.sources=pom.xml,src/main/resources,src/test/java/resources/parallel \
+                                -Dsonar.scannerOpts='--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-modules java.xml.bind'
+                            """
 
                     }
                 }
             }
         }
-//                         sh 'mvn sonar:sonar -Dsonar.projectKey=com.pointr:Pointr-cucumber -Dsonar.sources=src -Dsonar.test.inclusions=src/test/java -Dsonar.qualitygate.wait=true -Dsonar.profile=java-webdriver'
 
 
         stage('Build') {

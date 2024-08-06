@@ -72,7 +72,7 @@ services:
       - HubService
       - mysql
     environment:
-      - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED
+      - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED
     networks:
       - my_network
 
