@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BasePage {
-    private WebDriver webDriver = base.BaseTest.getWebDriver();
+    private WebDriver webDriver = BaseTest.getWebDriver();
     WebDriverWait webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     public void navigateUrl(String url){
         webDriver.get(url);
