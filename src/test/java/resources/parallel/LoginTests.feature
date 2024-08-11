@@ -1,4 +1,4 @@
-@Login
+@login
 Feature: Login Scenarios
   Background:
     * Go to n11 login page

@@ -6,8 +6,8 @@ version: "3.8"
 services:
 
   ChromeService:
-#    image: seleniarm/node-chromium:latest  for macosArm
-    image: selenium/node-chrome:latest
+    image: seleniarm/node-chromium:latest
+#    image: selenium/node-chrome:latest for windows
     shm_size: 2gb
     depends_on:
       - HubService
@@ -23,8 +23,8 @@ services:
 
 
   FirefoxService:
-#      image: seleniarm/node-firefox:latest  for macosArm
-      image: selenium/node-firefox:latest
+      image: seleniarm/node-firefox:latest
+#      image: selenium/node-firefox:latest for windows
       shm_size: 2gb
       depends_on:
         - HubService
@@ -40,8 +40,8 @@ services:
 
 
   HubService:
-#      image: seleniarm/hub:latest for macosArm
-      image: selenium/hub:latest
+      image: seleniarm/hub:latest
+#      image: selenium/hub:latest for windows
       container_name: selenium-hub
       ports:
         - "4442:4442"
