@@ -5,22 +5,22 @@ Feature: Search Scenarios
 
 
   Scenario: Successfully search
-    * Search the key from config
-    * '20' saniye beklenir
-    * Click on the search icon
-    * '21' saniye beklenir
-    * '23' saniye beklenir
-    * '24' saniye beklenir
-    * '28' saniye beklenir
-    * '27' saniye beklenir
-    * Check that the current url contains the key value
-    * '26' saniye beklenir
-    * '25' saniye beklenir
-    * '22' saniye beklenir
-    * Check that the necessary text fields are equal to the key value
-    * '24' saniye beklenir
-    * '24' saniye beklenir
-    * '23' saniye beklenir
+    Given Search the key from config
+    When '20' saniye beklenir
+    And Click on the search icon
+    And '21' saniye beklenir
+    And '23' saniye beklenir
+    And '24' saniye beklenir
+    And '28' saniye beklenir
+    And '27' saniye beklenir
+    And Check that the current url contains the key value
+    And '26' saniye beklenir
+    And '25' saniye beklenir
+    And '22' saniye beklenir
+    Then Check that the necessary text fields are equal to the key value
+    And '24' saniye beklenir
+    And '24' saniye beklenir
+    And '23' saniye beklenir
 #
 #  Scenario: Unsuccessfully search
 #    When Search "szymanski1907" value
