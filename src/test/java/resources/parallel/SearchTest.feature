@@ -19,6 +19,7 @@ Feature: Search Scenarios
     * '22' saniye beklenir
     * Check that the necessary text fields are equal to the key value
     * '24' saniye beklenir
+    * '24' saniye beklenir
     * '23' saniye beklenir
 #
 #  Scenario: Unsuccessfully search
